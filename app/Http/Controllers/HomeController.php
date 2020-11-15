@@ -14,7 +14,16 @@ class HomeController extends Controller
         ->distinct()
         ->pluck('COUNTRY');
 
-        return view('layouts.partials.home', compact('results'));
+        $sum = DB::table('trades')
+        ->select('YEAR', DB::raw('SUM(IMPORT) as IMPORT'), DB::raw('SUM(EXPORT) as EXPORT'))
+        ->groupBy('YEAR')
+        ->get();
+
+        $years = $sum->pluck('YEAR');
+        $imports = $sum->pluck('IMPORT');
+        $exports = $sum->pluck('EXPORT');
+
+        return view('layouts.partials.home', compact('results', 'years', 'imports', 'exports'));
     }
 
     public function first($id)
