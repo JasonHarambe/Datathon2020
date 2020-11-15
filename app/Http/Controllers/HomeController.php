@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function home()
     {
+
         $sum = DB::table('trades')
         ->select('YEAR', DB::raw('SUM(IMPORT) as IMPORT'), DB::raw('SUM(EXPORT) as EXPORT'))
         ->groupBy('YEAR')
@@ -19,15 +20,13 @@ class HomeController extends Controller
         ->groupBy('COUNTRY')
         ->get();
 
-        $countries = $counts->pluck('COUNTRY');
-
-        $results = $countries;
-
+        $countries = $counts->pluck('TOTAL', 'COUNTRY')->toArray();
+        
         $years = $sum->pluck('YEAR');
         $imports = $sum->pluck('IMPORT');
         $exports = $sum->pluck('EXPORT');
 
-        return view('layouts.partials.home', compact('results', 'years', 'imports', 'exports'));
+        return view('layouts.partials.home', compact('years', 'imports', 'exports', 'countries'));
     }
 
     public function first($id)
