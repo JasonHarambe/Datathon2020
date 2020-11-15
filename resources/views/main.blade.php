@@ -6,6 +6,7 @@
     <title>Demo</title>
 
     <link rel="stylesheet" href="/css/app.css">
+    @yield('head')
 </head>
 <body>
     @yield('content')
