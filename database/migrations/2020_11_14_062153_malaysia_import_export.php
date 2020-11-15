@@ -24,6 +24,7 @@ class MalaysiaImportExport extends Migration
             $table->string('COUNTRY');
             $table->integer('IMPORT');
             $table->integer('EXPORT');
+            $table->index(['COUNTRY']);
         });
     }
 

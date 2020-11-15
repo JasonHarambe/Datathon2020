@@ -9,15 +9,19 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $results = DB::table('trades')
-        ->select('COUNTRY')
-        ->distinct()
-        ->pluck('COUNTRY');
-
         $sum = DB::table('trades')
         ->select('YEAR', DB::raw('SUM(IMPORT) as IMPORT'), DB::raw('SUM(EXPORT) as EXPORT'))
         ->groupBy('YEAR')
         ->get();
+
+        $counts = DB::table('trades')
+        ->select('COUNTRY', DB::raw('count(*) as TOTAL'))
+        ->groupBy('COUNTRY')
+        ->get();
+
+        $countries = $counts->pluck('COUNTRY');
+
+        $results = $countries;
 
         $years = $sum->pluck('YEAR');
         $imports = $sum->pluck('IMPORT');
