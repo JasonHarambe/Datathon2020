@@ -1,49 +1,185 @@
 @extends('main')
 
+@section('head')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+@endsection
+
 @section('content')
-<div class="row d-flex justify-content-center py-4">
-    <div class="col-md-6">
-        <div class="row d-flex flex-column">
-            <h1 class="text-center display-3">Product</h1>
-            <div class="row d-flex flex-column mt-2">
-                <p class="text-uppercase text-center text-muted">
-                    <span class="d-inline-block text-truncate" style="max-width: 200px; vertical-align:top;">{{ $first }}</span>
-                    <span>
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="font-size:1.5em;">
-                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </span>
-                    <span class="d-inline-block text-truncate" style="max-width: 200px; vertical-align:top;">{{ $second }}</span>
-                    <span>
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="font-size:1.5em;">
-                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </span>
-                    <span class="d-inline-block text-truncate" style="max-width: 200px; vertical-align:top;">{{ $third }}</span>
-                    <span>
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="font-size:1.5em;">
-                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </span>
-                    <span class="d-inline-block text-truncate" style="max-width: 200px; vertical-align:top;">{{ $fourth }}</span>
-                    <span>
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="font-size:1.5em;">
-                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </span>
-                    <span class="d-inline-block text-truncate" style="max-width: 200px; vertical-align:top;">{{ $fifth }}</span>
-                </p>
+<div class="row">
+    <div class="col-5">
+        <div class="row d-flex justify-content-center py-4">
+            <div class="col-md-8 d-flex flex-column">
+                <h1 class="text-center display-5">Product Details</h1>
+                <div class="row d-flex justify-content-center" style="height: 100px;">
+
+                </div>
+                <div class="row d-flex justify-content-center border-top">
+                    <a class="btn btn-primary shadow text-center btn-sm mx-5 text-uppercase mt-2" href="/{{ $id }}/{{ $first }}/{{ $second }}/{{ $third }}/{{ $fourth }}" role="button">Back</a> 
+                    <a class="btn btn-success shadow text-center btn-sm mx-5 text-uppercase mt-2" href="/" role="button">Home</a> 
+                </div>  
             </div>
-            <div class="row d-flex justify-content-center">
-                <a href="/{{$id}}/{{$first}}/{{$second}}/{{$third}}/{{$fourth}}" class="text-uppercase text-dark font-weight-bold">BACK</a>
-                <a href="/" class="text-uppercase text-dark font-weight-bold ml-3">HOME</a>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 mb-5">
+                <div class="wrapper shadow rounded pb-5" style="max-height:80vh; overflow:scroll;">
+                    <ul class="list-group">
+                        @if (!empty($trades) > 0)
+                            <li class="list-group-item">Database ID: <strong><span class='h5'>{{ $trades[0]->id }}</span></strong> </li>
+                            <li class="list-group-item">Category 1: <strong><span class="h5">{{ $trades[0]->SITC1 }}</span></strong> <br> {{ $first }}</li>
+                            <li class="list-group-item">Category 2: <strong><span class="h5">{{ $trades[0]->SITC2 }}</span></strong> <br> {{ $second }}</li>
+                            <li class="list-group-item">Category 3: <strong><span class="h5">{{ $trades[0]->SITC3 }}</span></strong> <br> {{ $third }} </li>
+                            <li class="list-group-item">Category 4: <strong><span class="h5">{{ $trades[0]->SITC4 }}</span></strong> <br> {{ $fourth }}</li>
+                            <li class="list-group-item">Category 5: <strong><span class="h5">{{ $trades[0]->SITC5 }}</span></strong> <br> {{ $fifth }}</li>
+                            <li class="list-group-item">Country: <strong><span class="h5">{{ $trades[0]->COUNTRY }}</span></strong></li>
+                        @endif
+                    </ul> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-7">
+        <div class="row d-flex flex-column py-4">
+            <div class="row py-2 d-flex justify-content-between mr-5">
+                <h1>Import / Export</h1>
+            </div>
+            <div class="row py-2">
+                <div class="chart-wrapper shadow p-5">
+                    <canvas id="importChart" width="350" height="350"></canvas>
+                </div>
+                <div class="col mr-5">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Year</th>
+                                <th scope="col">Import (M)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($trades as $trade)
+                                <tr>
+                                    <th scope="row">{{ $trade->YEAR }}</th>
+                                    <td>{{ $trade->IMPORT }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="chart-wrapper shadow p-5">
+                    <canvas id="exportChart" width="350" height="350"></canvas>
+                </div>
+                <div class="col mr-5">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Year</th>
+                                <th scope="col">Import (M)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($trades as $trade)
+                                <tr>
+                                    <th scope="row">{{ $trade->YEAR }}</th>
+                                    <td>{{ $trade->EXPORT }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row d-flex justify-content-center">
-    <div class="col-md-6 pb-5">
-        <p>HI</p>
-    </div>
-</div>
+@endsection
+
+@section('script')
+<script>
+
+    var ctx = document.getElementById('importChart');
+
+    var years = @json($years);
+    var imports = @json($imports);
+    var exports = @json($exports);
+
+    var importChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Imports Over Years',
+                data: imports,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctx = document.getElementById('exportChart');
+
+    var exportChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Exports Over Years',
+                data: exports,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
 @endsection

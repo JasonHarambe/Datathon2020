@@ -2,6 +2,7 @@
 
 @section('head')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 @endsection
 
 @section('content')
@@ -17,10 +18,12 @@
                 <div class="wrapper shadow rounded pb-5" style="height:80vh; overflow:scroll;">
                     <ul class="list-group">
                         @foreach ($countries as $key => $value)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="/{{ $key }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             {{ $key }}
-                            <span class="badge badge-primary badge-pill">{{ $value }}</span>
-                        </li>
+                            <span class="badge badge-primary badge-pill">
+                                {{ $value }}
+                            </span>
+                        </a>
                         @endforeach
                     </ul>
                 </div>
@@ -30,11 +33,36 @@
     <div class="col-7">
         <div class="row d-flex flex-column py-4">
             <div class="row py-2 d-flex justify-content-between mr-5">
-                <h1>Summary</h1>
+                <h1>Import / Export</h1>
             </div>
             <div class="row py-2">
                 <div class="chart-wrapper shadow p-5">
                     <canvas id="importChart" width="350" height="350"></canvas>
+                </div>
+                <div class="col mr-5">
+                    <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Year</th>
+                            <th scope="col">Import (M)</th>
+                            <th scope="col">Export (M)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($overall as $key => $value)
+                        <tr>
+                            <th scope="row">{{ $value['YEAR'] }}</th>
+                            <td>{{ $value['IMPORT'] }}</td>
+                            <td>{{ $value['EXPORT'] }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="chart-wrapper shadow p-5">
+                    <canvas id="maxChart" width="350" height="350"></canvas>
                 </div>
             </div>
         </div>
@@ -85,30 +113,27 @@
     }
     });
 
-    // var net = document.getElementById('netChart');
+    var ctx = document.getElementById('maxChart');
 
-    // var netChart = new Chart(net, {
-    //     type: 'doughnut',
-    //     data: {
-    //         datasets: [{
-    //             data: [imports[0], exports[0]],
-    //             backgroundColor: [
-    //             'rgba(255, 99, 132, 0.2)',
-    //             'rgba(54, 162, 235, 0.2)'
-    //         ],
-    //             borderColor: [
-    //                 'rgba(255, 99, 132, 1)',
-    //                 'rgba(54, 162, 235, 1)'
-    //             ],
-    //             borderWidth: 1
-    //         }],
-
-    //         // These labels appear in the legend and in the tooltips when hovering different arcs
-    //             labels: [
-    //                 'Import',
-    //                 'Export',
-    //         ]
-    //     }
-    // });
+    var maxChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['MY', 'AU', 'UK', 'USA' , 'China'],
+            datasets: [{
+                data: [60, 64, 100, 90, 84]
+            }]
+        },
+        options: {
+            scale: {
+                angleLines: {
+                    display: false
+                },
+                ticks: {
+                    suggestedMin: 50,
+                    suggestedMax: 100
+                }
+            }
+        },
+    });
 </script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+
     public function home()
     {
 
@@ -21,12 +22,20 @@ class HomeController extends Controller
         ->get();
 
         $countries = $counts->pluck('TOTAL', 'COUNTRY')->toArray();
-        
-        $years = $sum->pluck('YEAR');
+
+        $overall = $sum->map(function($sum) {
+            return array(
+                'YEAR' => $sum->YEAR,
+                'IMPORT' => number_format($sum->IMPORT / 1000000),
+                'EXPORT' => number_format($sum->EXPORT / 1000000),
+            );
+        });
+
+        $years = $overall->pluck('YEAR');
         $imports = $sum->pluck('IMPORT');
         $exports = $sum->pluck('EXPORT');
 
-        return view('layouts.partials.home', compact('years', 'imports', 'exports', 'countries'));
+        return view('layouts.partials.home', compact('years', 'imports', 'exports', 'countries', 'overall'));
     }
 
     public function first($id)
@@ -34,9 +43,9 @@ class HomeController extends Controller
         $trades = DB::table('trades')
         ->where('COUNTRY', '=', $id)
         ->join('one', 'trades.SITC1', '=', 'one.DIGIT')
-        ->select('DESC')
-        ->distinct()
-        ->pluck('DESC');
+        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->groupBy('DESC')
+        ->get();
 
         return view('layouts.partials.first', compact('trades', 'id'));
     }
@@ -49,9 +58,9 @@ class HomeController extends Controller
         ->where('COUNTRY', '=', $id)
         ->where('SITC1', '=', $uno)
         ->join('two', 'trades.SITC2', '=', 'two.DIGIT')
-        ->select('DESC')
-        ->distinct()
-        ->pluck('DESC');
+        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->groupBy('DESC')
+        ->get();
 
         return view('layouts.partials.second', compact('trades', 'id', 'first'));
     }
@@ -66,9 +75,9 @@ class HomeController extends Controller
         ->where('SITC1', '=', $uno)
         ->where('SITC2', '=', $duo)
         ->join('three', 'trades.SITC3', '=', 'three.DIGIT')
-        ->select('DESC')
-        ->distinct()
-        ->pluck('DESC');
+        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->groupBy('DESC')
+        ->get();
 
         return view('layouts.partials.third', compact('trades', 'id', 'first', 'second'));
     }
@@ -85,9 +94,9 @@ class HomeController extends Controller
         ->where('SITC2', '=', $duo)
         ->where('SITC3', '=', $trio)
         ->join('four', 'trades.SITC4', '=', 'four.DIGIT')
-        ->select('DESC')
-        ->distinct()
-        ->pluck('DESC');
+        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->groupBy('DESC')
+        ->get();
 
         return view('layouts.partials.fourth', compact('trades', 'id', 'first', 'second', 'third'));
     }
@@ -106,9 +115,9 @@ class HomeController extends Controller
         ->where('SITC3', '=', $trio)
         ->where('SITC4', '=', $quattro)
         ->join('five', 'trades.SITC5', '=', 'five.DIGIT')
-        ->select('DESC')
-        ->distinct()
-        ->pluck('DESC');
+        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->groupBy('DESC')
+        ->get();
 
         return view('layouts.partials.fifth', compact('trades', 'id', 'first', 'second', 'third', 'fourth'));
     }
@@ -130,9 +139,13 @@ class HomeController extends Controller
         ->where('SITC5', '=', $cuattro)
         ->get();
 
-        dd($trades);
+        $years = $trades->pluck('YEAR');
+        $imports = $trades->pluck('IMPORT');
+        $exports = $trades->pluck('EXPORT');
+        
+        $trades->all();
 
-        return view('layouts.partials.product', compact('trades', 'id', 'first', 'second', 'third', 'fourth', 'fifth'));
+        return view('layouts.partials.product', compact('trades', 'id', 'first', 'second', 'third', 'fourth', 'fifth', 'years', 'imports', 'exports'));
     }
 
 }
