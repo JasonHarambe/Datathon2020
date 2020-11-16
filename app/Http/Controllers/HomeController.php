@@ -21,6 +21,20 @@ class HomeController extends Controller
         ->groupBy('COUNTRY')
         ->get();
 
+        $ten = DB::table('trades')
+        ->select('COUNTRY', DB::raw('ROUND(SUM(EXPORT) / 1000000, 1) as EXPORT'))
+        ->groupBy('COUNTRY')
+        ->orderBy('EXPORT', 'DESC')
+        ->take(10)
+        ->get();
+
+        $eleven = DB::table('trades')
+        ->select('COUNTRY', DB::raw('ROUND(SUM(IMPORT) / 1000000, 1) as IMPORT'))
+        ->groupBy('COUNTRY')
+        ->orderBy('IMPORT', 'DESC')
+        ->take(10)
+        ->get();
+
         $countries = $counts->pluck('TOTAL', 'COUNTRY')->toArray();
 
         $overall = $sum->map(function($sum) {
@@ -35,7 +49,7 @@ class HomeController extends Controller
         $imports = $sum->pluck('IMPORT');
         $exports = $sum->pluck('EXPORT');
 
-        return view('layouts.partials.home', compact('years', 'imports', 'exports', 'countries', 'overall'));
+        return view('layouts.partials.home', compact('years', 'imports', 'exports', 'countries', 'overall', 'ten', 'eleven'));
     }
 
     public function first($id)

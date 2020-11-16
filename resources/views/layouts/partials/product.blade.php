@@ -51,7 +51,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Year</th>
-                                <th scope="col">Import (M)</th>
+                                <th scope="col">Import (RM)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,7 +74,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Year</th>
-                                <th scope="col">Import (M)</th>
+                                <th scope="col">Export (RM)</th>
                             </tr>
                         </thead>
                         <tbody>
