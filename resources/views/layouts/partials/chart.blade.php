@@ -56,7 +56,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: 'Import Count',
+                label: 'Total Imports',
                 data: imports,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -94,7 +94,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: 'Category Count',
+                label: 'Total Exports',
                 data: exports,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
