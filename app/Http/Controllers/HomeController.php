@@ -57,7 +57,7 @@ class HomeController extends Controller
         $trades = DB::table('trades')
         ->where('COUNTRY', '=', $id)
         ->join('one', 'trades.SITC1', '=', 'one.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
         ->groupBy('DESC')
         ->get();
 
@@ -72,7 +72,7 @@ class HomeController extends Controller
         ->where('COUNTRY', '=', $id)
         ->where('SITC1', '=', $uno)
         ->join('two', 'trades.SITC2', '=', 'two.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
         ->groupBy('DESC')
         ->get();
 

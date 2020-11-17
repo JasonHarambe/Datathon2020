@@ -1,5 +1,9 @@
 @extends('main')
 
+@section('head')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+@endsection('head')
+
 @section('content')
 <div class="row">
     <div class="col-5">
@@ -38,6 +42,12 @@
             </div>
         </div>
     </div>
-    <div class="col bg-dark"></div>
+    <div class="col-7">
+        @include('layouts.partials.page_graph')
+    </div>
 </div>
+@endsection
+
+@section('script')
+    @include('layouts.partials.chart')
 @endsection
