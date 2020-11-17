@@ -89,7 +89,7 @@ class HomeController extends Controller
         ->where('SITC1', '=', $uno)
         ->where('SITC2', '=', $duo)
         ->join('three', 'trades.SITC3', '=', 'three.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
         ->groupBy('DESC')
         ->get();
 
@@ -108,7 +108,7 @@ class HomeController extends Controller
         ->where('SITC2', '=', $duo)
         ->where('SITC3', '=', $trio)
         ->join('four', 'trades.SITC4', '=', 'four.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
         ->groupBy('DESC')
         ->get();
 
@@ -129,7 +129,7 @@ class HomeController extends Controller
         ->where('SITC3', '=', $trio)
         ->where('SITC4', '=', $quattro)
         ->join('five', 'trades.SITC5', '=', 'five.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'))
+        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
         ->groupBy('DESC')
         ->get();
 

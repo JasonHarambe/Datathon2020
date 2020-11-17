@@ -50,6 +50,12 @@
             </div>
         </div>
     </div>
-    <div class="col-7 bg-dark"></div>
+    <div class="col-7">
+        @include('layouts.partials.page_graph')
+    </div>
 </div>
+@endsection
+
+@section('script')
+    @include('layouts.partials.chart')
 @endsection
