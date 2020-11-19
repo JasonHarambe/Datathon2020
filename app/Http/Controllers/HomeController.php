@@ -82,7 +82,7 @@ class HomeController extends Controller
     public function third($id, $first, $second)
     {
         $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
-        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', 'like', '%'.$second.'%')->pluck('digit')->first();
 
         $trades = DB::table('trades')
         ->where('country', '=', $id)
@@ -99,8 +99,8 @@ class HomeController extends Controller
     public function fourth($id, $first, $second, $third)
     {
         $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
-        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
-        $trio = DB::table('three')->where('desc', '=', $third)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', 'like', '%'.$second.'%')->pluck('digit')->first();
+        $trio = DB::table('three')->where('desc', 'like', '%'.$third.'%')->pluck('digit')->first();
 
         $trades = DB::table('trades')
         ->where('country', '=', $id)
@@ -118,9 +118,9 @@ class HomeController extends Controller
     public function fifth($id, $first, $second, $third, $fourth)
     {
         $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
-        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
-        $trio = DB::table('three')->where('desc', '=', $third)->pluck('digit')->first();
-        $quattro = DB::table('four')->where('desc', '=', $fourth)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', 'like', '%'.$second.'%')->pluck('digit')->first();
+        $trio = DB::table('three')->where('desc', 'like', '%'.$third.'%')->pluck('digit')->first();
+        $quattro = DB::table('four')->where('desc', 'like', '%'.$fourth.'%')->pluck('digit')->first();
 
         $trades = DB::table('trades')
         ->where('country', '=', $id)
@@ -139,10 +139,10 @@ class HomeController extends Controller
     public function product($id, $first, $second, $third, $fourth, $fifth)
     {
         $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
-        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
-        $trio = DB::table('three')->where('desc', '=', $third)->pluck('digit')->first();
-        $quattro = DB::table('four')->where('desc', '=', $fourth)->pluck('digit')->first();
-        $cuattro = DB::table('five')->where('desc', '=', $fifth)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', 'like', '%'.$second.'%')->pluck('digit')->first();
+        $trio = DB::table('three')->where('desc', 'like', '%'.$third.'%')->pluck('digit')->first();
+        $quattro = DB::table('four')->where('desc', 'like', '%'.$fourth.'%')->pluck('digit')->first();
+        $cuattro = DB::table('five')->where('desc', 'like', '%'.$fifth.'%')->pluck('digit')->first();
 
         $trades = DB::table('trades')
         ->where('country', '=', $id)
