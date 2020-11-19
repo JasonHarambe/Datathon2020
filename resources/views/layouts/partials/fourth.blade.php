@@ -41,8 +41,8 @@
                     <ul class="list-group">
                         @foreach ($trades as $key => $value)
                         <a href="/{{ $id }}/{{ $first }}/{{ $second }}/{{ $third }}/{{ $value->DESC }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                            {{ $value->DESC }}
-                            <span class="badge badge-primary badge-pill">{{ $value->TOTAL }}</span>
+                            {{ $value->desc }}
+                            <span class="badge badge-primary badge-pill">{{ $value->total }}</span>
                         </a>
                         @endforeach
                     </ul> 

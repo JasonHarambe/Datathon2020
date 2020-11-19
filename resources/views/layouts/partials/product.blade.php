@@ -25,12 +25,12 @@
                     <ul class="list-group">
                         @if (!empty($trades) > 0)
                             <li class="list-group-item">Database ID: <strong><span class='h5'>{{ $trades[0]->id }}</span></strong> </li>
-                            <li class="list-group-item">Category 1: <strong><span class="h5">{{ $trades[0]->SITC1 }}</span></strong> <br> {{ $first }}</li>
-                            <li class="list-group-item">Category 2: <strong><span class="h5">{{ $trades[0]->SITC2 }}</span></strong> <br> {{ $second }}</li>
-                            <li class="list-group-item">Category 3: <strong><span class="h5">{{ $trades[0]->SITC3 }}</span></strong> <br> {{ $third }} </li>
-                            <li class="list-group-item">Category 4: <strong><span class="h5">{{ $trades[0]->SITC4 }}</span></strong> <br> {{ $fourth }}</li>
-                            <li class="list-group-item">Category 5: <strong><span class="h5">{{ $trades[0]->SITC5 }}</span></strong> <br> {{ $fifth }}</li>
-                            <li class="list-group-item">Country: <strong><span class="h5">{{ $trades[0]->COUNTRY }}</span></strong></li>
+                            <li class="list-group-item">Category 1: <strong><span class="h5">{{ $trades[0]->sitc1 }}</span></strong> <br> {{ $first }}</li>
+                            <li class="list-group-item">Category 2: <strong><span class="h5">{{ $trades[0]->sitc2 }}</span></strong> <br> {{ $second }}</li>
+                            <li class="list-group-item">Category 3: <strong><span class="h5">{{ $trades[0]->sitc3 }}</span></strong> <br> {{ $third }} </li>
+                            <li class="list-group-item">Category 4: <strong><span class="h5">{{ $trades[0]->sitc4 }}</span></strong> <br> {{ $fourth }}</li>
+                            <li class="list-group-item">Category 5: <strong><span class="h5">{{ $trades[0]->sitc5 }}</span></strong> <br> {{ $fifth }}</li>
+                            <li class="list-group-item">Country: <strong><span class="h5">{{ $trades[0]->country }}</span></strong></li>
                         @endif
                     </ul> 
                 </div>
@@ -57,8 +57,8 @@
                         <tbody>
                             @foreach ($trades as $trade)
                                 <tr>
-                                    <th scope="row">{{ $trade->YEAR }}</th>
-                                    <td>{{ $trade->IMPORT }}</td>
+                                    <th scope="row">{{ $trade->year }}</th>
+                                    <td>{{ $trade->import }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -80,8 +80,8 @@
                         <tbody>
                             @foreach ($trades as $trade)
                                 <tr>
-                                    <th scope="row">{{ $trade->YEAR }}</th>
-                                    <td>{{ $trade->EXPORT }}</td>
+                                    <th scope="row">{{ $trade->year }}</th>
+                                    <td>{{ $trade->export }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
