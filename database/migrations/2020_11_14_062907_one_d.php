@@ -15,8 +15,8 @@ class OneD extends Migration
     {
         Schema::create('one', function(Blueprint $table) {
             $table->id();
-            $table->string('DIGIT');
-            $table->longText('DESC');
+            $table->string('digit');
+            $table->longText('desc');
         });
     }
 

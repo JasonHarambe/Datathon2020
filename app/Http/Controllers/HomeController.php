@@ -12,42 +12,42 @@ class HomeController extends Controller
     {
 
         $sum = DB::table('trades')
-        ->select('YEAR', DB::raw('SUM(IMPORT) as IMPORT'), DB::raw('SUM(EXPORT) as EXPORT'))
-        ->groupBy('YEAR')
+        ->select('year', DB::raw('SUM(import) as import'), DB::raw('SUM(export) as export'))
+        ->groupBy('year')
         ->get();
 
         $counts = DB::table('trades')
-        ->select('COUNTRY', DB::raw('count(*) as TOTAL'))
-        ->groupBy('COUNTRY')
+        ->select('country', DB::raw('count(*) as total'))
+        ->groupBy('country')
         ->get();
 
         $ten = DB::table('trades')
-        ->select('COUNTRY', DB::raw('ROUND(SUM(EXPORT) / 1000000, 1) as EXPORT'))
-        ->groupBy('COUNTRY')
-        ->orderBy('EXPORT', 'DESC')
+        ->select('country', DB::raw('ROUND(SUM(export) / 1000000, 1) as export'))
+        ->groupBy('country')
+        ->orderBy('export', 'DESC')
         ->take(10)
         ->get();
 
         $eleven = DB::table('trades')
-        ->select('COUNTRY', DB::raw('ROUND(SUM(IMPORT) / 1000000, 1) as IMPORT'))
-        ->groupBy('COUNTRY')
-        ->orderBy('IMPORT', 'DESC')
+        ->select('country', DB::raw('ROUND(SUM(import) / 1000000, 1) as import'))
+        ->groupBy('country')
+        ->orderBy('import', 'DESC')
         ->take(10)
         ->get();
 
-        $countries = $counts->pluck('TOTAL', 'COUNTRY')->toArray();
+        $countries = $counts->pluck('TOTAL', 'country')->toArray();
 
         $overall = $sum->map(function($sum) {
             return array(
-                'YEAR' => $sum->YEAR,
-                'IMPORT' => number_format($sum->IMPORT / 1000000),
-                'EXPORT' => number_format($sum->EXPORT / 1000000),
+                'year' => $sum->year,
+                'import' => number_format($sum->import / 1000000),
+                'export' => number_format($sum->export / 1000000),
             );
         });
 
-        $years = $overall->pluck('YEAR');
-        $imports = $sum->pluck('IMPORT');
-        $exports = $sum->pluck('EXPORT');
+        $years = $overall->pluck('year');
+        $imports = $sum->pluck('import');
+        $exports = $sum->pluck('export');
 
         return view('layouts.partials.home', compact('years', 'imports', 'exports', 'countries', 'overall', 'ten', 'eleven'));
     }

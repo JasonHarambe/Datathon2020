@@ -46,9 +46,9 @@
                     <tbody>
                         @foreach ($overall as $key => $value)
                         <tr>
-                            <th scope="row">{{ $value['YEAR'] }}</th>
-                            <td>{{ $value['IMPORT'] }}</td>
-                            <td>{{ $value['EXPORT'] }}</td>
+                            <th scope="row">{{ $value['year'] }}</th>
+                            <td>{{ $value['import'] }}</td>
+                            <td>{{ $value['export'] }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -70,8 +70,8 @@
                     <tbody>
                         @foreach ($ten as $country)
                         <tr>
-                            <th scope="row">{{ $country->COUNTRY }}</th>
-                            <td>{{ $country->EXPORT }}</td>
+                            <th scope="row">{{ $country->country }}</th>
+                            <td>{{ $country->export }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -93,8 +93,8 @@
                     <tbody>
                         @foreach ($eleven as $country)
                         <tr>
-                            <th scope="row">{{ $country->COUNTRY }}</th>
-                            <td>{{ $country->IMPORT }}</td>
+                            <th scope="row">{{ $country->country }}</th>
+                            <td>{{ $country->import }}</td>
                         </tr>
                         @endforeach
                     </tbody>

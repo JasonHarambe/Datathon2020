@@ -15,8 +15,8 @@ class FiveD extends Migration
     {
         Schema::create('five', function(Blueprint $table) {
             $table->id();
-            $table->string('DIGIT');
-            $table->longText('DESC');
+            $table->string('digit');
+            $table->longText('desc');
         });
     }
 

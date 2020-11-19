@@ -15,8 +15,8 @@ class FourD extends Migration
     {
         Schema::create('four', function(Blueprint $table) {
             $table->id();
-            $table->string('DIGIT');
-            $table->longText('DESC');
+            $table->string('digit');
+            $table->longText('desc');
         });
     }
 

@@ -15,8 +15,8 @@ class TwoD extends Migration
     {
         Schema::create('two', function(Blueprint $table) {
             $table->id();
-            $table->string('DIGIT');
-            $table->longText('DESC');
+            $table->string('digit');
+            $table->longText('desc');
         });
     }
 

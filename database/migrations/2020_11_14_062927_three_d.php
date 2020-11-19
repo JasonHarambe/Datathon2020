@@ -15,8 +15,8 @@ class ThreeD extends Migration
     {
         Schema::create('three', function(Blueprint $table) {
             $table->id();
-            $table->string('DIGIT');
-            $table->longText('DESC');
+            $table->string('digit');
+            $table->longText('desc');
         });
     }
 

@@ -15,16 +15,16 @@ class MalaysiaImportExport extends Migration
     {
         Schema::create('trades', function(Blueprint $table) {
             $table->id();
-            $table->year('YEAR');
-            $table->string('SITC1');
-            $table->string('SITC2');
-            $table->string('SITC3');
-            $table->string('SITC4');
-            $table->string('SITC5');
-            $table->string('COUNTRY');
-            $table->integer('IMPORT');
-            $table->integer('EXPORT');
-            $table->index(['COUNTRY']);
+            $table->year('year');
+            $table->string('sitc1');
+            $table->string('sitc2');
+            $table->string('sitc3');
+            $table->string('sitc4');
+            $table->string('sitc5');
+            $table->string('country');
+            $table->integer('import');
+            $table->integer('export');
+            $table->index(['country']);
         });
     }
 
