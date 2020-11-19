@@ -35,7 +35,7 @@ class HomeController extends Controller
         ->take(10)
         ->get();
 
-        $countries = $counts->pluck('TOTAL', 'country')->toArray();
+        $countries = $counts->pluck('total', 'country')->toArray();
 
         $overall = $sum->map(function($sum) {
             return array(

@@ -16,7 +16,7 @@
                         <a href="/{{ $key }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             {{ $key }}
                             <span class="badge badge-primary badge-pill">
-                                {{ dd($value)}}
+                                {{ $value }}
                             </span>
                         </a>
                         @endforeach
