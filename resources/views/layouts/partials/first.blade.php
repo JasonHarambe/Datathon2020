@@ -21,9 +21,9 @@
                 <div class="wrapper shadow rounded pb-5" style="max-height:80vh; overflow:scroll;">
                         <ul class="list-group">
                             @foreach ($trades as $key => $value)
-                            <a href="/{{ $id }}/{{ $value->DESC }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                {{ $value->DESC }}
-                                <span class="badge badge-primary badge-pill">{{ $value->TOTAL }}</span>
+                            <a href="/{{ $id }}/{{ $value->desc }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                {{ $value->desc }}
+                                <span class="badge badge-primary badge-pill">{{ $value->total }}</span>
                             </a>
                             @endforeach
                         </ul>

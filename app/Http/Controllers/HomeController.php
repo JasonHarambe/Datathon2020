@@ -55,10 +55,10 @@ class HomeController extends Controller
     public function first($id)
     {
         $trades = DB::table('trades')
-        ->where('COUNTRY', '=', $id)
-        ->join('one', 'trades.SITC1', '=', 'one.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
-        ->groupBy('DESC')
+        ->where('country', '=', $id)
+        ->join('one', 'trades.sitc1', '=', 'one.digit')
+        ->select('desc', DB::raw('count(*) as total'), DB::raw('ROUND(SUM(import), 1) as import'), DB::raw('ROUND(SUM(export), 1) as export'))
+        ->groupBy('desc')
         ->get();
 
         return view('layouts.partials.first', compact('trades', 'id'));
@@ -66,14 +66,14 @@ class HomeController extends Controller
 
     public function second($id, $first)
     {
-        $uno = DB::table('one')->where('DESC', '=', $first)->pluck('DIGIT')->first();
+        $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
 
         $trades = DB::table('trades')
-        ->where('COUNTRY', '=', $id)
-        ->where('SITC1', '=', $uno)
-        ->join('two', 'trades.SITC2', '=', 'two.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
-        ->groupBy('DESC')
+        ->where('country', '=', $id)
+        ->where('sitc1', '=', $uno)
+        ->join('two', 'trades.sitc2', '=', 'two.digit')
+        ->select('desc', DB::raw('count(*) as total'), DB::raw('ROUND(SUM(import), 1) as import'), DB::raw('ROUND(SUM(export), 1) as export'))
+        ->groupBy('desc')
         ->get();
 
         return view('layouts.partials.second', compact('trades', 'id', 'first'));
@@ -81,16 +81,16 @@ class HomeController extends Controller
 
     public function third($id, $first, $second)
     {
-        $uno = DB::table('one')->where('DESC', '=', $first)->pluck('DIGIT')->first();
-        $duo = DB::table('two')->where('DESC', '=', $second)->pluck('DIGIT')->first();
+        $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
 
         $trades = DB::table('trades')
-        ->where('COUNTRY', '=', $id)
-        ->where('SITC1', '=', $uno)
-        ->where('SITC2', '=', $duo)
-        ->join('three', 'trades.SITC3', '=', 'three.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
-        ->groupBy('DESC')
+        ->where('country', '=', $id)
+        ->where('sitc1', '=', $uno)
+        ->where('sitc2', '=', $duo)
+        ->join('three', 'trades.sitc3', '=', 'three.digit')
+        ->select('desc', DB::raw('count(*) as total'), DB::raw('ROUND(SUM(import), 1) as import'), DB::raw('ROUND(SUM(export), 1) as export'))
+        ->groupBy('desc')
         ->get();
 
         return view('layouts.partials.third', compact('trades', 'id', 'first', 'second'));
@@ -98,18 +98,18 @@ class HomeController extends Controller
 
     public function fourth($id, $first, $second, $third)
     {
-        $uno = DB::table('one')->where('DESC', '=', $first)->pluck('DIGIT')->first();
-        $duo = DB::table('two')->where('DESC', '=', $second)->pluck('DIGIT')->first();
-        $trio = DB::table('three')->where('DESC', '=', $third)->pluck('DIGIT')->first();
+        $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
+        $trio = DB::table('three')->where('desc', '=', $third)->pluck('digit')->first();
 
         $trades = DB::table('trades')
-        ->where('COUNTRY', '=', $id)
-        ->where('SITC1', '=', $uno)
-        ->where('SITC2', '=', $duo)
-        ->where('SITC3', '=', $trio)
-        ->join('four', 'trades.SITC4', '=', 'four.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
-        ->groupBy('DESC')
+        ->where('country', '=', $id)
+        ->where('sitc1', '=', $uno)
+        ->where('sitc2', '=', $duo)
+        ->where('sitc3', '=', $trio)
+        ->join('four', 'trades.sitc4', '=', 'four.digit')
+        ->select('desc', DB::raw('count(*) as total'), DB::raw('ROUND(SUM(import), 1) as import'), DB::raw('ROUND(SUM(export), 1) as export'))
+        ->groupBy('desc')
         ->get();
 
         return view('layouts.partials.fourth', compact('trades', 'id', 'first', 'second', 'third'));
@@ -117,20 +117,20 @@ class HomeController extends Controller
 
     public function fifth($id, $first, $second, $third, $fourth)
     {
-        $uno = DB::table('one')->where('DESC', '=', $first)->pluck('DIGIT')->first();
-        $duo = DB::table('two')->where('DESC', '=', $second)->pluck('DIGIT')->first();
-        $trio = DB::table('three')->where('DESC', '=', $third)->pluck('DIGIT')->first();
-        $quattro = DB::table('four')->where('DESC', '=', $fourth)->pluck('DIGIT')->first();
+        $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
+        $trio = DB::table('three')->where('desc', '=', $third)->pluck('digit')->first();
+        $quattro = DB::table('four')->where('desc', '=', $fourth)->pluck('digit')->first();
 
         $trades = DB::table('trades')
-        ->where('COUNTRY', '=', $id)
-        ->where('SITC1', '=', $uno)
-        ->where('SITC2', '=', $duo)
-        ->where('SITC3', '=', $trio)
-        ->where('SITC4', '=', $quattro)
-        ->join('five', 'trades.SITC5', '=', 'five.DIGIT')
-        ->select('DESC', DB::raw('count(*) as TOTAL'), DB::raw('ROUND(SUM(IMPORT), 1) as IMPORT'), DB::raw('ROUND(SUM(EXPORT), 1) as EXPORT'))
-        ->groupBy('DESC')
+        ->where('country', '=', $id)
+        ->where('sitc1', '=', $uno)
+        ->where('sitc2', '=', $duo)
+        ->where('sitc3', '=', $trio)
+        ->where('sitc4', '=', $quattro)
+        ->join('five', 'trades.sitc5', '=', 'five.digit')
+        ->select('desc', DB::raw('count(*) as total'), DB::raw('ROUND(SUM(import), 1) as import'), DB::raw('ROUND(SUM(export), 1) as export'))
+        ->groupBy('desc')
         ->get();
 
         return view('layouts.partials.fifth', compact('trades', 'id', 'first', 'second', 'third', 'fourth'));
@@ -138,24 +138,24 @@ class HomeController extends Controller
 
     public function product($id, $first, $second, $third, $fourth, $fifth)
     {
-        $uno = DB::table('one')->where('DESC', '=', $first)->pluck('DIGIT')->first();
-        $duo = DB::table('two')->where('DESC', '=', $second)->pluck('DIGIT')->first();
-        $trio = DB::table('three')->where('DESC', '=', $third)->pluck('DIGIT')->first();
-        $quattro = DB::table('four')->where('DESC', '=', $fourth)->pluck('DIGIT')->first();
-        $cuattro = DB::table('five')->where('DESC', '=', $fifth)->pluck('DIGIT')->first();
+        $uno = DB::table('one')->where('desc', '=', $first)->pluck('digit')->first();
+        $duo = DB::table('two')->where('desc', '=', $second)->pluck('digit')->first();
+        $trio = DB::table('three')->where('desc', '=', $third)->pluck('digit')->first();
+        $quattro = DB::table('four')->where('desc', '=', $fourth)->pluck('digit')->first();
+        $cuattro = DB::table('five')->where('desc', '=', $fifth)->pluck('digit')->first();
 
         $trades = DB::table('trades')
-        ->where('COUNTRY', '=', $id)
-        ->where('SITC1', '=', $uno)
-        ->where('SITC2', '=', $duo)
-        ->where('SITC3', '=', $trio)
-        ->where('SITC4', '=', $quattro)
-        ->where('SITC5', '=', $cuattro)
+        ->where('country', '=', $id)
+        ->where('sitc1', '=', $uno)
+        ->where('sitc2', '=', $duo)
+        ->where('sitc3', '=', $trio)
+        ->where('sitc4', '=', $quattro)
+        ->where('sitc5', '=', $cuattro)
         ->get();
 
-        $years = $trades->pluck('YEAR');
-        $imports = $trades->pluck('IMPORT');
-        $exports = $trades->pluck('EXPORT');
+        $years = $trades->pluck('year');
+        $imports = $trades->pluck('import');
+        $exports = $trades->pluck('export');
         
         $trades->all();
 

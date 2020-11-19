@@ -22,8 +22,8 @@
                 <tbody>
                     @foreach ($trades as $key => $value)
                         <tr>
-                            <th scope="row">{{ substr($value->DESC, 0, 10)}}</th>
-                            <td>{{ $value->IMPORT }}</td>
+                            <th scope="row">{{ substr($value->desc, 0, 10)}}</th>
+                            <td>{{ $value->import }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -45,8 +45,8 @@
                 <tbody>
                     @foreach ($trades as $key => $value)
                         <tr>
-                            <th scope="row">{{ substr($value->DESC, 0, 10)}}</th>
-                            <td>{{ $value->EXPORT }}</td>
+                            <th scope="row">{{ substr($value->desc, 0, 10)}}</th>
+                            <td>{{ $value->export }}</td>
                         </tr>
                     @endforeach
                 </tbody>

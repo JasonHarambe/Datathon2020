@@ -6,10 +6,10 @@
     exports = [];
 
     for (i in trades) {
-        labels.push(trades[i]['DESC'].substr(0, 10));
-        counts.push(trades[i]['TOTAL']);
-        imports.push(trades[i]['IMPORT']);
-        exports.push(trades[i]['EXPORT']);
+        labels.push(trades[i]['desc'].substr(0, 10));
+        counts.push(trades[i]['total']);
+        imports.push(trades[i]['import']);
+        exports.push(trades[i]['export']);
     }
 
     var ctx = document.getElementById('categoryChart');
