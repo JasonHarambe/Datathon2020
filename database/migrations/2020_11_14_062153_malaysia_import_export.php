@@ -22,8 +22,8 @@ class MalaysiaImportExport extends Migration
             $table->string('sitc4');
             $table->string('sitc5');
             $table->string('country');
-            $table->integer('import');
-            $table->integer('export');
+            $table->bigInteger('import');
+            $table->bigInteger('export');
             $table->index(['country']);
         });
     }

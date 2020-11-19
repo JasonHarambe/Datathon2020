@@ -156,8 +156,8 @@
     top_exports = [];
 
     for (i in ten) {
-        top_countries.push(ten[i]['COUNTRY']);
-        top_exports.push(ten[i]['EXPORT']);
+        top_countries.push(ten[i]['country']);
+        top_exports.push(ten[i]['export']);
     }
 
     var maxExportChart = new Chart(ctx, {
@@ -206,8 +206,8 @@
     top_imports = [];
 
     for (i in eleven) {
-        top_countries_imports.push(eleven[i]['COUNTRY']);
-        top_imports.push(eleven[i]['IMPORT']);
+        top_countries_imports.push(eleven[i]['country']);
+        top_imports.push(eleven[i]['import']);
     }
 
     var maxExportChart = new Chart(ctx, {
