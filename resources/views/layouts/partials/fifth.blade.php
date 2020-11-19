@@ -37,7 +37,6 @@
                 </div>
                 <div class="row d-flex justify-content-center border-top">
                     <a class="btn btn-primary shadow text-center btn-sm mx-5 text-uppercase mt-2" href="/{{ $id }}/{{ $first }}/{{ $second }}/{{ $third }}" role="button">Back</a> 
-                    <a class="btn btn-success shadow text-center btn-sm mx-5 text-uppercase mt-2" href="/" role="button">Home</a> 
                 </div>  
             </div>
         </div>
@@ -46,7 +45,7 @@
                 <div class="wrapper shadow rounded pb-5" style="max-height:80vh; overflow:scroll;">
                     <ul class="list-group">
                         @foreach ($trades as $key => $value)
-                        <a href="/{{ $id }}/{{ $first }}/{{ $second }}/{{ $third }}/{{ $fourth }}/{{ $value->desc }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="/{{ $id }}/{{ $first }}/{{ $second }}/{{ $third }}/{{ $fourth }}/{{ $value->desc }}" class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             {{ $value->desc }}
                             <span class="badge badge-primary badge-pill">{{ $value->total }}</span>
                         </a>
