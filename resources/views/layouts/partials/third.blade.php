@@ -25,7 +25,6 @@
                 </div>
                 <div class="row d-flex justify-content-center border-top">
                     <a class="btn btn-primary shadow text-center btn-sm mx-5 text-uppercase mt-2" href="/{{ $id }}/{{ $first }}" role="button">Back</a> 
-                    <a class="btn btn-success shadow text-center btn-sm mx-5 text-uppercase mt-2" href="/" role="button">Home</a> 
                 </div>  
             </div>
         </div>
