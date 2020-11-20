@@ -4,7 +4,7 @@
     </div>
     <div class="row py-2">
         <div class="chart-wrapper shadow p-5">
-            <canvas id="categoryChart" width="350" height="350"></canvas>
+            <canvas id="categoryChart" width="775" height="350"></canvas>
         </div>
     </div>
     <div class="row py-2">
