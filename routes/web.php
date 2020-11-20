@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', 'HomeController@home');
+Route::get('/about', function() {
+    return view('layouts.partials.about');
+});
+Route::get('/contact', function() {
+    return view('layouts.partials.contact');
+});
 
 Route::get('/{id}', 'HomeController@first');
 Route::get('/{id}/{first}', 'HomeController@second');

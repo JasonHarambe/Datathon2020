@@ -4,9 +4,8 @@
 <div class="row">
     <nav class="col-3 d-none d-block bg-light sidebar">
         <div class = "sidebar-sticky" style="height:100%; position:fixed; width: 20%; overflow:scroll;">
-            
-                <ul class="nav flex-column">
-                <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3>Countries</h3></a>
+            <ul class="nav flex-column mb-5 pb-3">
+            <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3>Countries</h3></a>
             @foreach ($countries as $key => $value)
                 <a href="/{{ $key }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     {{ $key }}
@@ -15,8 +14,7 @@
                     </span>
                 </a>
             @endforeach
-                </ul>
-            
+            </ul>
         </div>
     </nav>
     <div class="col-9">
