@@ -126,3 +126,45 @@
         }
     });
 </script>
+
+@if (!empty($series))
+<script>
+    var series = @json($series);
+
+    series_years = [];
+    series_imports = [];
+    series_exports = [];
+
+    for (i in series) {
+        series_years.push(series[i]['year']);
+        series_imports.push(series[i]['import']);
+        series_exports.push(series[i]['export']);
+    }
+
+    var ctx = document.getElementById('seriesChart');
+    var seriesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: series_years,
+            datasets: [{ 
+                data: series_imports,
+                label: "Imports",
+                borderColor: "#3e95cd",
+                fill: false
+            }, { 
+                data: series_exports,
+                label: "Exports",
+                borderColor: "#8e5ea2",
+                fill: false
+            }
+            ]
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'Import Exports Over The Years'
+            }
+        }
+    });
+</script>
+@endif

@@ -61,7 +61,13 @@ class HomeController extends Controller
         ->groupBy('desc')
         ->get();
 
-        return view('layouts.partials.first', compact('trades', 'id'));
+        $series = DB::table('trades')
+        ->where('country', 'like', $id)
+        ->select('year', DB::raw('SUM(import) as import '), DB::raw('SUM(export) as export'))
+        ->groupBy('year')
+        ->get();
+
+        return view('layouts.partials.first', compact('trades', 'id', 'series'));
     }
 
     public function second($id, $first)
