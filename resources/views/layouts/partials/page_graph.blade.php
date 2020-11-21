@@ -13,7 +13,7 @@
         </div>
         <div class="col mr-5">
             <table class="table table-bordered">
-                <thead class = "thead-dark>
+                <thead class = "thead-dark">
                     <tr>
                         <th scope="col">Category</th>
                         <th scope="col">Imports</th>
@@ -36,7 +36,7 @@
         </div>
         <div class="col mr-5">
             <table class="table table-bordered">
-                <thead class = "thead-dark>
+                <thead class = "thead-dark">
                     <tr>
                         <th scope="col">Category</th>
                         <th scope="col">Exports</th>
