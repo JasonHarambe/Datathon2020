@@ -7,7 +7,7 @@
             <ul class="nav flex-column mb-5 pb-3">
             <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3>Countries</h3></a>
             @foreach ($countries as $key => $value)
-                <a href="/{{ $key }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <a href="/master/{{ $key }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     {{ $key }}
                     <span class="badge badge-primary badge-pill">
                         {{ $value }}

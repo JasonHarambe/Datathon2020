@@ -18,18 +18,22 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', 'HomeController@home');
+
 Route::get('/about', function() {
     return view('layouts.partials.about');
 });
+
 Route::get('/contact', function() {
     return view('layouts.partials.contact');
 });
 
-Route::get('/{id}', 'HomeController@first');
-Route::get('/{id}/{first}', 'HomeController@second');
-Route::get('/{id}/{first}/{second}', 'HomeController@third');
-Route::get('/{id}/{first}/{second}/{third}', 'HomeController@fourth');
-Route::get('/{id}/{first}/{second}/{third}/{fourth}', 'HomeController@fifth');
+Route::get('/master/{id}', 'HomeController@first');
+Route::get('/master/{id}/{first}', 'HomeController@second');
+Route::get('/master/{id}/{first}/{second}', 'HomeController@third');
+Route::get('/master/{id}/{first}/{second}/{third}', 'HomeController@fourth');
+Route::get('/master/{id}/{first}/{second}/{third}/{fourth}', 'HomeController@fifth');
 
-Route::get('/{id}/{first}/{second}/{third}/{fourth}/{fifth}', 'HomeController@product');
+Route::get('/master/{id}/{first}/{second}/{third}/{fourth}/{fifth}', 'HomeController@product');
 
+Route::get('/interactive', 'ChartController@interactive');
+Route::get('/getchartdata/{country}', 'ChartController@getChartData');

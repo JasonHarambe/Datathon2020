@@ -14,7 +14,7 @@
                     <div class="row d-flex justify-content-center mt-2">
                         <a href="/" class="btn btn-primary btn-sm text-uppercase" role='button'>home</a>
                         <span class="mx-1"></span>
-                        <a href="/{{ $id }}/{{ $first }}/{{ $second }}/{{ $third }}/{{ $fourth }}" class="btn btn-success btn-sm text-uppercase" role='button'>back</a>
+                        <a href="/master/{{ $id }}/{{ $first }}/{{ $second }}/{{ $third }}/{{ $fourth }}" class="btn btn-success btn-sm text-uppercase" role='button'>back</a>
                     </div>
                 </div>
                 <ul class="list-group">

@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 @foreach ($trades as $key => $value)
-                    <a href="/{{ $id }}/{{ $value->desc }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a href="/master/{{ $id }}/{{ $value->desc }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         {{ $value->desc }}
                         <span class="badge badge-primary badge-pill">
                             {{ $value->total }}
