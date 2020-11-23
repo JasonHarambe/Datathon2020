@@ -23,7 +23,7 @@
             <canvas id="canvas"></canvas>
         </div>
         <div class="row">
-            <button id="removeDataset" class="btn btn-sm btn-primary shadow">Remove Data</button>
+            <button id="removeDataset" class="btn btn-sm btn-primary shadow">Undo</button>
             <button id="clearAll" class="btn btn-sm btn-primary shadow ml-3">Clear All</button>  
             <div class="custom-control custom-switch ml-5">
                 <input type="checkbox" class="custom-control-input" id="customSwitch" checked>
@@ -160,7 +160,7 @@
     
 
     document.getElementById('removeDataset').addEventListener('click', function() {
-        config.data.datasets.splice(0, 1);
+        config.data.datasets.pop();
         window.myLine.update();
     });
 
