@@ -19,11 +19,16 @@
         </div>
     </nav>
     <div class="col-9 d-flex flex-column">
-        <div class="row py-4" style="width:100%;">
+        <div class="row py-4 chart-wrapper" style="width:100%;">
             <canvas id="canvas"></canvas>
         </div>
         <div class="row">
-            <button id="removeDataset" class="btn btn-sm btn-primary shadow">Remove Data</button> 
+            <button id="removeDataset" class="btn btn-sm btn-primary shadow">Remove Data</button>
+            <button id="clearAll" class="btn btn-sm btn-primary shadow ml-3">Clear All</button>  
+            <div class="custom-control custom-switch ml-5">
+                <input type="checkbox" class="custom-control-input" id="customSwitch" checked>
+                <label class="custom-control-label" for="customSwitch" id="toggleWord">Import</label>
+            </div>
         </div>
     </div>
 </div>
@@ -32,6 +37,25 @@
 
 @section('script')
 <script>
+    var exportOn = false;
+
+    $(document).ready(function () {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myLine = new Chart(ctx, config);
+    });
+
+    $('#customSwitch').on('change', function () {
+        exportOn = !exportOn;
+
+        $('#toggleWord').text('Import' ? 'Export' : 'Import'); 
+
+        removeData(window.myLine);
+        updateConfigByMutating(window.myLine);
+        
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myLine = new Chart(ctx, config);
+    });
+
     var config = {
         type: 'line',
         data: {
@@ -71,10 +95,21 @@
         }
     };
 
-    window.onload = function() {
-        var ctx = document.getElementById('canvas').getContext('2d');
-        window.myLine = new Chart(ctx, config);
-    };
+    function removeData(chart) {
+        var count = config.data.datasets.length;
+
+        while (count > 0)
+        {
+            config.data.datasets.pop();
+            count --;
+        }
+        chart.update();
+    }
+
+    function updateConfigByMutating(chart) {
+        config.options.title.text = exportOn == true ? 'Exports Over Years' : 'Imports Over Years';
+        chart.update();
+    }
 
     var colorNames = Object.keys(window.chartColors);
 
@@ -115,6 +150,7 @@
                     }
 
                     config.data.datasets.push(newDataset);
+
                     window.myLine.update();
                 }
             });
@@ -126,6 +162,10 @@
     document.getElementById('removeDataset').addEventListener('click', function() {
         config.data.datasets.splice(0, 1);
         window.myLine.update();
+    });
+
+    document.getElementById('clearAll').addEventListener('click', function() {
+        removeData(window.myLine);
     });
 
 </script>
