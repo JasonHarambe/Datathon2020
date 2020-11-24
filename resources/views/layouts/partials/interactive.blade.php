@@ -27,7 +27,7 @@
             <button id="clearAll" class="btn btn-sm btn-primary shadow ml-3">Clear All</button>  
             <div class="custom-control custom-switch ml-5">
                 <input type="checkbox" class="custom-control-input" id="customSwitch" checked>
-                <label class="custom-control-label" for="customSwitch" id="toggleWord">Import</label>
+                <label class="custom-control-label" for="customSwitch" id="toggleWord"></label>
             </div>
         </div>
     </div>
@@ -38,6 +38,7 @@
 @section('script')
 <script>
     var exportOn = false;
+    $('#toggleWord').text('Import');
 
     $(document).ready(function () {
         var ctx = document.getElementById('canvas').getContext('2d');
@@ -47,13 +48,14 @@
     $('#customSwitch').on('change', function () {
         exportOn = !exportOn;
 
-        $('#toggleWord').text('Import' ? 'Export' : 'Import'); 
-
         removeData(window.myLine);
         updateConfigByMutating(window.myLine);
+        window.myLine.update();
         
         var ctx = document.getElementById('canvas').getContext('2d');
         window.myLine = new Chart(ctx, config);
+
+        exportOn == true ? $('#toggleWord').text('Export') : $('#toggleWord').text('Import') 
     });
 
     var config = {
@@ -148,7 +150,11 @@
                     };
 
                     for (var index = 0; index < imports.length; ++index) {
-                        newDataset.data.push(imports[index]);
+                        if (exportOn == true)
+                        {
+                            newDataset.data.push(exports[index]);
+                        }
+                        else { newDataset.data.push(imports[index]); }
                     }
 
                     config.data.datasets.push(newDataset);
