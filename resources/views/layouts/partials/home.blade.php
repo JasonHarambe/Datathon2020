@@ -130,9 +130,10 @@
     });
 
     $(document).ready(function () {
+        var baseUrl = window.location.href;
 
         $.ajax({
-            url: 'http://graph.test/gettoptenbyexports',
+            url: baseUrl + 'gettoptenbyexports',
             success: function (response) {
                 var ctx = document.getElementById('maxExportChart').getContext('2d');
                 var exports_countries_list = [];
@@ -186,7 +187,7 @@
         });
 
         $.ajax({
-            url: 'http://graph.test/gettoptenbyimports',
+            url: baseUrl + 'gettoptenbyimports',
             success: function (response) {
                 var ctx = document.getElementById('maxImportChart');
                 var imports_countries_list = [];

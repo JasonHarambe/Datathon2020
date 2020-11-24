@@ -114,11 +114,13 @@
     var colorNames = Object.keys(window.chartColors);
 
     $(document).ready(function() { 
+        var baseUrl = window.location.origin;
+
         $(".addDataset").click(function() {
             var country = $(this).data('country');
             
             $.ajax({
-                url: 'http://graph.test/getchartdata/' + country,
+                url: baseUrl + '/getchartdata/' + country,
                 success: function (response) {
                     var years = [];
                     var imports = [];
