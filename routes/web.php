@@ -36,4 +36,7 @@ Route::get('/master/{id}/{first}/{second}/{third}/{fourth}', 'HomeController@fif
 Route::get('/master/{id}/{first}/{second}/{third}/{fourth}/{fifth}', 'HomeController@product');
 
 Route::get('/interactive', 'ChartController@interactive');
+
 Route::get('/getchartdata/{country}', 'ChartController@getChartData');
+Route::get('/gettoptenbyexports', 'ChartController@getTopTenByExports');
+Route::get('/gettoptenbyimports', 'ChartController@getTopTenByImports');

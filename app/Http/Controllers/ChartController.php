@@ -28,4 +28,28 @@ class ChartController extends Controller
 
         return $data;
     }
+
+    public function getTopTenByExports()
+    {
+        $data = DB::table('trades')
+        ->select('country', DB::raw('ROUND(SUM(export) / 1000000, 1) as export'))
+        ->groupBy('country')
+        ->orderBy('export', 'DESC')
+        ->take(10)
+        ->get();
+
+        return $data;
+    }
+
+    public function getTopTenByImports()
+    {
+        $data = DB::table('trades')
+        ->select('country', DB::raw('ROUND(SUM(import) / 1000000, 1) as import'))
+        ->groupBy('country')
+        ->orderBy('import', 'DESC')
+        ->take(10)
+        ->get();
+
+        return $data;
+    }
 }

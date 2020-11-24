@@ -59,13 +59,7 @@
                             <th scope="col">Exports (M)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($ten as $country)
-                        <tr>
-                            <th scope="row">{{ $country->country }}</th>
-                            <td>{{ $country->export }}</td>
-                        </tr>
-                        @endforeach
+                    <tbody id="exportsTable">
                     </tbody>
                     </table>
                 </div>
@@ -82,13 +76,7 @@
                             <th scope="col">Imports (M)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($eleven as $country)
-                        <tr>
-                            <th scope="row">{{ $country->country }}</th>
-                            <td>{{ $country->import }}</td>
-                        </tr>
-                        @endforeach
+                    <tbody id="importsTable">
                     </tbody>
                     </table>
                 </div>
@@ -112,133 +100,144 @@
     var exports = @json($exports);
 
     var importChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        datasets: [{
-                label: 'Total Imports',
-                data: imports.map(nFormatter),
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 0.2)',
-                borderWidth: 1,
-            }, {
-                label: 'Total Exports',
-                data: exports.map(nFormatter),
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 0.2)',
-                borderWidth: 1,
-                type: 'line'
-            }],
-        labels: years
-        },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+        type: 'bar',
+        data: {
+            datasets: [{
+                    label: 'Total Imports',
+                    data: imports.map(nFormatter),
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 1,
+                }, {
+                    label: 'Total Exports',
+                    data: exports.map(nFormatter),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 1,
+                    type: 'line'
+                }],
+            labels: years
+            },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
     });
 
-    var ctx = document.getElementById('maxExportChart');
+    $(document).ready(function () {
 
-    var ten = @json($ten);
-    top_countries = [];
-    top_exports = [];
+        $.ajax({
+            url: 'http://graph.test/gettoptenbyexports',
+            success: function (response) {
+                var ctx = document.getElementById('maxExportChart').getContext('2d');
+                var exports_countries_list = [];
+                var exports_list = [];
 
-    for (i in ten) {
-        top_countries.push(ten[i]['country']);
-        top_exports.push(ten[i]['export']);
-    }
+                response.forEach((element) => {
+                    exports_countries_list.push(element.country);
+                    exports_list.push(element.export);
+                    $('#exportsTable').append("<tr><th scope='row'>" + element.country + "</th><td>" + element.export + "</td></tr>");
+                })
 
-    var maxExportChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: {
-        datasets: [{
-                label: 'Top 10 Countries by Export',
-                data: top_exports,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1,
-            }],
-        labels: top_countries,
-        },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-    });
+                var maxExportChart = new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: {
+                        datasets: [{
+                                label: 'Top 10 Countries by Export',
+                                data: exports_list,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(255, 99, 132, 1)'
+                                ],
+                                borderWidth: 1,
+                            }],
+                        labels: exports_countries_list,
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
 
-    var ctx = document.getElementById('maxImportChart');
+        $.ajax({
+            url: 'http://graph.test/gettoptenbyimports',
+            success: function (response) {
+                var ctx = document.getElementById('maxImportChart');
+                var imports_countries_list = [];
+                var imports_list = [];
 
-    var eleven = @json($eleven);
-    top_countries_imports = [];
-    top_imports = [];
+                response.forEach((element) => {
+                    imports_countries_list.push(element.country);
+                    imports_list.push(element.import);
+                    $('#importsTable').append("<tr><th scope='row'>" + element.country + "</th><td>" + element.import + "</td></tr>");
+                })
 
-    for (i in eleven) {
-        top_countries_imports.push(eleven[i]['country']);
-        top_imports.push(eleven[i]['import']);
-    }
-
-    var maxExportChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: {
-        datasets: [{
-                label: 'Top 10 Countries by Imports',
-                data: top_imports,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1,
-            }],
-        labels: top_countries_imports,
-        },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
+                var maxImportChart = new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: {
+                        datasets: [{
+                                label: 'Top 10 Countries by Imports',
+                                data: imports_list,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(255, 99, 132, 1)'
+                                ],
+                                borderWidth: 1,
+                            }],
+                        labels: imports_countries_list,
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
     });
 </script>
 @endsection
