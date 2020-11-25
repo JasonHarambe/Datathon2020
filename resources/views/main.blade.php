@@ -25,6 +25,7 @@
             <a class="nav-item nav-link" href="/about">About</a>
             <a class="nav-item nav-link" href="/contact">Contact</a>
             <a class="nav-item nav-link" href="/interactive">Interactive</a>
+            <a class="nav-item nav-link" href="/infographic">Infographic</a>
             </div>
         </div>
     </nav>

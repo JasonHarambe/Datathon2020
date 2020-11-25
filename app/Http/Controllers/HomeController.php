@@ -35,7 +35,7 @@ class HomeController extends Controller
         $imports = $sum->pluck('import');
         $exports = $sum->pluck('export');
 
-        return view('layouts.partials.home', compact('years', 'imports', 'exports', 'countries', 'overall'));
+        return view('layouts.home', compact('years', 'imports', 'exports', 'countries', 'overall'));
     }
 
     public function first($id)

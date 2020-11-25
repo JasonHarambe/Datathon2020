@@ -54,11 +54,11 @@
         </div>
     </nav>
     <div class="col-9">
-        @include('layouts.partials.page_graph')
+        @include('layouts.subs.page_graph')
     </div>
 </div>
 @endsection
 
 @section('script')
-    @include('layouts.partials.chart')
+    @include('layouts.subs.chart')
 @endsection

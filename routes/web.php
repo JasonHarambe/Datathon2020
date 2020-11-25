@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@home');
 
 Route::get('/about', function() {
-    return view('layouts.partials.about');
+    return view('layouts.about');
 });
 
 Route::get('/contact', function() {
-    return view('layouts.partials.contact');
+    return view('layouts.contact');
 });
 
 Route::get('/master/{id}', 'HomeController@first');
@@ -36,6 +36,7 @@ Route::get('/master/{id}/{first}/{second}/{third}/{fourth}', 'HomeController@fif
 Route::get('/master/{id}/{first}/{second}/{third}/{fourth}/{fifth}', 'HomeController@product');
 
 Route::get('/interactive', 'ChartController@interactive');
+Route::get('/infographic', 'ChartController@infographic');
 
 Route::get('/getchartdata/{country}', 'ChartController@getChartData');
 Route::get('/gettoptenbyexports', 'ChartController@getTopTenByExports');

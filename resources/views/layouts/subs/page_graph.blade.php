@@ -8,7 +8,7 @@
         </div>
     </div>
     @if (!empty($series))
-        @include('layouts.partials.series')
+        @include('layouts.subs.series')
     @endif
     <div class="row py-2">
         <div class="chart-wrapper shadow p-5">

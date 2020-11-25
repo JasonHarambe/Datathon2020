@@ -14,7 +14,7 @@ class ChartController extends Controller
         ->distinct()
         ->get();
 
-        return view('layouts.partials.interactive', compact('countries'));
+        return view('layouts.interactive', compact('countries'));
     }
 
 
@@ -51,5 +51,10 @@ class ChartController extends Controller
         ->get();
 
         return $data;
+    }
+
+    public function infographic()
+    {
+        return view('layouts.infographic');
     }
 }
