@@ -115,4 +115,5 @@ class ChartController extends Controller
         $exports = $sum->pluck('EXPORT');
 
         return view('layouts.map', compact('years', 'imports', 'exports', 'countries', 'overall', 'ten', 'eleven'));
+    }
 }
