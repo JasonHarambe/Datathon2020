@@ -55,6 +55,21 @@ class ChartController extends Controller
 
     public function infographic()
     {
-        return view('layouts.infographic');
+        $countries = DB::table('trades')->select('country')->distinct()->get();
+
+        return view('layouts.infographic', compact('countries'));
+    }
+
+    public function groupByCategory($country)
+    {
+        $data = DB::table('trades')
+        ->join('one', 'trades.sitc1', '=', 'one.digit')
+        ->select('desc', DB::raw('SUM(import) as import'), DB::raw('SUM(export) as export'))
+        ->where('country', '=', $country)
+        ->groupBy('desc')
+        ->get();
+
+        return $data;
+
     }
 }
