@@ -38,6 +38,8 @@ Route::get('/master/{id}/{first}/{second}/{third}/{fourth}/{fifth}', 'HomeContro
 Route::get('/interactive', 'ChartController@interactive');
 Route::get('/infographic', 'ChartController@infographic');
 
+Route::get('/map', 'ChartController@map');
+
 // jQuery Calls
 Route::get('/getchartdata/{country}', 'ChartController@getChartData');
 Route::get('/gettoptenbyexports', 'ChartController@getTopTenByExports');
