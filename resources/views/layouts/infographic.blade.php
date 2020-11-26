@@ -108,10 +108,10 @@
             </div>
         </div>
         <div class="row mt-3 d-flex justify-content-between mx-2">
-            <div class="col-12">
+            <div class="col-6">
                 <canvas id="exportByCategory" width="400" height="250"></canvas>
             </div>
-            <div class="col-12 mt-2">
+            <div class="col-6">
                 <canvas id="importByCategory" width="400" height="250"></canvas>
             </div>
         </div>
@@ -233,7 +233,7 @@
 
                 var ctx = document.getElementById('exportByCategory').getContext('2d');
                 window.exportByCategory = new Chart(ctx, {
-                    type: 'polarArea',
+                    type: 'doughnut',
                         data: {
                             labels: description,
                             datasets: [{
@@ -252,7 +252,7 @@
 
                 var ctx = document.getElementById('importByCategory').getContext('2d');
                 window.importByCategory = new Chart(ctx, {
-                    type: 'polarArea',
+                    type: 'doughnut',
                         data: {
                             labels: description,
                             datasets: [{
