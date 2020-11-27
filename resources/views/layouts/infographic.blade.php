@@ -19,6 +19,7 @@
     color: grey;
 }
 </style>
+<script src="/js/utils.js"></script>
 @endsection
 
 @section('content')
@@ -81,25 +82,25 @@
             </div>
             <div class="col-4 px-5 pt-2 pb-5 d-flex flex-column">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="row">
-                            <span class="text-uppercase">Projected Imports</span>
-                            <h1 class="text-muted">2020</h1>
+                            <span class="text-uppercase font-weight-bold">Projected Imports</span>
+                            <h1 class="text-muted projectedYear"></h1>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <span class="text-muted" style="font-size: 3rem;">46M</span>
+                    <div class="col-8">
+                        <span class="card-body-text" style="font-size: 2rem;" id="projectedImport"></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="row">
-                            <span class="text-uppercase">Projected Exports</span>
-                            <h1 class="text-muted">2020</h1>
+                            <span class="text-uppercase font-weight-bold">Projected Exports</span>
+                            <h1 class="text-muted projectedYear"></h1>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <span class="text-muted" style="font-size: 3rem;">46M</span>
+                    <div class="col-8">
+                        <span class="card-body-text" style="font-size: 2rem;" id="projectedExport"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -113,6 +114,22 @@
             </div>
             <div class="col-6">
                 <canvas id="importByCategory" width="400" height="250"></canvas>
+            </div>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <h2 class="card-body-text">Imports Per Year By Category</h2>
+        </div>
+        <div class="row mt-2">
+            <div class="container" style="width:85%;">
+                <canvas id="importBubbleChart" width="400" height="250"></canvas>
+            </div>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <h2 class="card-body-text">Exports Per Year By Category</h2>
+        </div>
+        <div class="row mt-2">
+            <div class="container" style="width:85%;">
+                <canvas id="exportBubbleChart" width="400" height="250"></canvas>
             </div>
         </div>
     </div>
@@ -130,10 +147,13 @@
             removeData(window.seriesChart);
             removeData(window.exportByCategory);
             removeData(window.importByCategory);
+            removeData(window.importBubbleChart);
+            removeData(window.exportBubbleChart);
 
             renderCharts(country);
 
-        })
+        });
+
     })
 
     function removeData(chart) {
@@ -146,6 +166,14 @@
         }
         chart.update();
     }
+
+    const formatNum = n => {
+        if (n < 1e3) return n;
+        if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
+        if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+        if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
+        if (n >= 1e12) return +(n / 1e12).toFixed(1) + "T";
+    };
 
     function renderCharts(country) {
         var baseUrl = window.location.origin;
@@ -183,12 +211,15 @@
                 var maxYear = response[response.length - 1].year;
                 var countryName = response[0].country;
 
-                $('#totalExportNo').text((total_export/1000000).toFixed(2) + 'M')
-                $('#totalImportNo').text((total_import/1000000).toFixed(2) + 'M')
+                $('#totalExportNo').text(formatNum(total_export))
+                $('#totalImportNo').text(formatNum(total_import))
                 $('#maxImportYear').text(max_import_year)
                 $('#maxExportYear').text(max_export_year)
                 $('.yearDuration').text(minYear + ' - ' + maxYear)
                 $('#countryName').text(countryName);
+                $('.projectedYear').text(maxYear + 1);
+                $('#projectedExport').text(formatNum(total_export / (maxYear - minYear)));
+                $('#projectedImport').text(formatNum(total_import / (maxYear - minYear)));
 
                 var ctx = document.getElementById('seriesChart');
                 window.seriesChart = new Chart(ctx, {
@@ -199,12 +230,12 @@
                             data: series_imports,
                             label: "Imports",
                             borderColor: "#EC7063",
-                            fill: true
+                            fill: false
                         }, { 
                             data: series_exports,
                             label: "Exports",
                             borderColor: "#5DADE2",
-                            fill: true
+                            fill: false
                         }
                         ]
                     },
@@ -270,6 +301,130 @@
                 });
             }
         })
+
+        $.ajax({
+            url: baseUrl + '/getbubblechartdata/' + country,
+            success: function(response) {
+                var import_datasets = [];
+                var export_datasets = [];
+                var import_data = [];
+                var export_data = [];
+                
+                var colorNames = Object.keys(window.chartColors);
+                var color = Chart.helpers.color;
+
+                var max = response[1];
+                var desc = response[0][0].desc;
+                var count = 0;
+                var colorNum = 0;
+
+                console.log(response);
+
+                $.each(response[0], function(index, arg) {
+                    if (arg.desc == desc) {
+
+                        import_data.push({
+                            x: arg.year,
+                            y: arg.import,
+                            r: (arg.import / max[count].import) * 100
+                        })
+
+                        export_data.push({
+                            x: arg.year,
+                            y: arg.export,
+                            r: (arg.export / max[count].export) * 100
+                        })
+
+                        count += 1;
+
+                    } else {    
+
+                        var colorName = colorNames[colorNum % colorNames.length];
+                        var dsColor = window.chartColors[colorName];   
+                                         
+                        import_datasets.push({
+                            label: arg.desc,
+                            backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                            borderColor: dsColor,
+                            borderWidth: 1,
+                            data: import_data
+                        });
+
+                        export_datasets.push({
+                            label: arg.desc,
+                            backgroundColor: color(dsColor).alpha(0.5).rgbString(),
+                            borderColor: dsColor,
+                            borderWidth: 1,
+                            data: export_data
+                        });
+
+                        colorNum += 1;
+
+                        desc = arg.desc;
+                        import_data = [];
+                        export_data = [];
+
+                        import_data.push({
+                            x: arg.year,
+                            y: arg.import,
+                            r: (arg.import / max[0].import) * 100
+                        })
+                        export_data.push({
+                            x: arg.year,
+                            y: arg.export, 
+                            r: (arg.export / max[0].export) * 100
+                        })
+
+                        count = 1;
+                    }
+                })
+
+                var importBubbleChartData = {
+                    datasets: import_datasets
+                };
+
+                var exportBubbleChartData = {
+                    datasets: export_datasets
+                };
+
+                var ctx = document.getElementById('importBubbleChart').getContext('2d');
+                window.importBubbleChart = new Chart(ctx, {
+                    type: 'bubble',
+                    data: importBubbleChartData,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: false,
+                                text: ''
+                            },
+                            tooltip: {
+                                mode: 'point'
+                            }
+                        }
+                    }
+                });
+
+                var ctx = document.getElementById('exportBubbleChart').getContext('2d');
+                window.exportBubbleChart = new Chart(ctx, {
+                    type: 'bubble',
+                    data: exportBubbleChartData,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: false,
+                                text: ''
+                            },
+                            tooltip: {
+                                mode: 'point'
+                            }
+                        }
+                    }
+                });
+            }
+        })
+
     }
 </script>
 @endsection

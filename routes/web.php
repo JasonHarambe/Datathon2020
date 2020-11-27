@@ -46,3 +46,4 @@ Route::get('/gettoptenbyexports', 'ChartController@getTopTenByExports');
 Route::get('/gettoptenbyimports', 'ChartController@getTopTenByImports');
 Route::get('/groupbycategory/{country}', 'ChartController@groupByCategory');
 Route::get('/getmapinfo', 'ChartController@getMapInfo');
+Route::get('/getbubblechartdata/{country}', 'ChartController@getBubbleChartData');

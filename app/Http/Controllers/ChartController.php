@@ -87,4 +87,22 @@ class ChartController extends Controller
     {
         return view('layouts.map');
     }
+
+    public function getBubbleChartData($country)
+    {
+        $data = DB::table('trades')
+        ->join('one', 'trades.sitc1', '=', 'one.digit')
+        ->select('desc', 'year', DB::raw('SUM(import) as import'), DB::raw('SUM(export) as export'))
+        ->where('country', '=', $country)
+        ->groupBy('desc', 'year')
+        ->get();
+
+        $max = DB::table('trades')
+        ->select('year', DB::raw('SUM(import) as import'), DB::raw('SUM(export) as export'))
+        ->where('country', '=', $country)
+        ->groupBy('year')
+        ->get();
+
+        return [$data, $max];
+    }
 }

@@ -22,11 +22,11 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
             <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link" href="/about">About</a>
-            <a class="nav-item nav-link" href="/contact">Contact</a>
             <a class="nav-item nav-link" href="/interactive">Interactive</a>
             <a class="nav-item nav-link" href="/infographic">Infographic</a>
             <a class="nav-item nav-link" href="/map">Map</a>
+            <a class="nav-item nav-link" href="/about">About</a>
+            <a class="nav-item nav-link" href="/contact">Contact</a>
             </div>
         </div>
     </nav>
