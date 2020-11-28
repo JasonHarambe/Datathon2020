@@ -36,12 +36,12 @@
         </div>
     </nav>
     <div class="col-9">
-        <div class="row py-3">
-            <h4 class="font-weight-bold text-uppercase" id="countryName"></h4>
+        <div class="row pt-3 pb-1">
+            <h1 class="font-weight-bold text-uppercase text-muted" id="countryName"></h1>
         </div>
         <div class="row">
             <div class="card shadow rounded" style="width:16rem;">
-                <div class="card-header card-header-text">
+                <div class="card-header card-header-text bg-info text-light">
                     Total Exports <br>
                     <span class="card-header-span yearDuration"></span>
                 </div>
@@ -49,7 +49,7 @@
             </div>
             <span class="mx-2"></span>
             <div class="card shadow rounded" style="width:16rem;">
-                <div class="card-header card-header-text">
+                <div class="card-header card-header-text bg-primary text-light">
                     Total Imports <br>
                     <span class="card-header-span yearDuration"></span>
                 </div>
@@ -57,7 +57,7 @@
             </div>
             <span class="mx-2"></span>
             <div class="card shadow rounded" style="width:16rem;">
-                <div class="card-header card-header-text">
+                <div class="card-header card-header-text bg-success text-light">
                     Max Imports <br>
                     <span class="card-header-span yearDuration"></span>
                 </div>
@@ -67,7 +67,7 @@
             </div>
             <span class="mx-2"></span>
             <div class="card shadow rounded" style="width:16rem;">
-                <div class="card-header card-header-text">
+                <div class="card-header card-header-text bg-secondary text-light">
                     Max Exports <br>
                     <span class="card-header-span yearDuration"></span>
                 </div>
@@ -77,6 +77,7 @@
             </div>
         </div>
         <div class="row mt-4">
+            <h1 class='col-12 text-muted font-weight-bold my-4'>Imports & Exports Over the Years</h1>
             <div class="col-8 shadow">
                 <canvas id="seriesChart" width="400" height="250"></canvas>
             </div>
@@ -103,7 +104,7 @@
                         <span class="card-body-text" style="font-size: 2rem;" id="projectedExport"></span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <img src="./img/graph.png" alt="" style="width:60%; opacity:80%;">
                 </div>
             </div>
@@ -117,7 +118,7 @@
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <h2 class="card-body-text">Imports Per Year By Category</h2>
+            <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Imports Per Year By Category</h1>
         </div>
         <div class="row mt-2">
             <div class="container" style="width:85%;">
@@ -125,7 +126,7 @@
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <h2 class="card-body-text">Exports Per Year By Category</h2>
+        <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Exports Per Year By Category</h1>
         </div>
         <div class="row mt-2">
             <div class="container" style="width:85%;">
@@ -133,7 +134,7 @@
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <h2 class="card-body-text">Net Export</h2>
+            <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Net Exports</h1>
         </div>
         <div class="row mt-2">
             <div class="container" style="width:85%;">

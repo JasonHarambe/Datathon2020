@@ -44,13 +44,13 @@
 
 @section('content')
 <div class="row d-flex justify-content-center">
-  <h1>Total Exports Map</h1>
+  <h1 class="mt-4 text-muted font-weight-bold">Total Exports Map <br><p style="font-size:1rem;" class="text-center">explore Malaysia's exports</p></h1>
 </div>
 <div class="row p-5">
-  <div class="col-12 shadow" id="ExportMap"></div>
+  <div class="col-12 shadow" id="ExportMap" style="width:85%;"></div>
 </div>
 <div class="row d-flex justify-content-center">
-  <h1>Total Imports Map</h1>
+  <h1 class="mt-4 text-muted font-weight-bold">Total Imports Map <br><p style="font-size:1rem;" class="text-center">explore Malaysia's imports</p></h1>
 </div>
 <div class="row p-5">
   <div class="col-12 shadow" id="ImportMap"></div>

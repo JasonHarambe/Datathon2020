@@ -9,7 +9,7 @@
     <nav class="col-3 d-none d-block bg-light sidebar">
         <div class = "sidebar-sticky" style="height:100%; position:fixed; width: 20%; overflow:scroll;">
             <ul class="nav flex-column mb-5 pb-3">
-            <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3>Countries</h3></a>
+            <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3 class="font-weight-bold">Countries</h3></a>
             @foreach ($countries as $country)
                 <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center addDataset" data-country='{{ $country->country }}'>
                     {{ $country->country }}
@@ -19,16 +19,22 @@
         </div>
     </nav>
     <div class="col-9 d-flex flex-column">
+        <h1 class="col-12 text-muted font-weight-bold mt-4 mb-1">Interactive Viewer <br><p style="font-size:1rem;">click on any countries on the left and compare their exports or imports between countries</p></h1>
         <div class="row py-4 chart-wrapper" style="width:100%;">
             <canvas id="canvas"></canvas>
         </div>
         <div class="row">
-            <button id="removeDataset" class="btn btn-sm btn-primary shadow">Undo</button>
-            <button id="clearAll" class="btn btn-sm btn-primary shadow ml-3">Clear All</button>  
+            <button id="removeDataset" class="btn btn-sm btn-primary shadow my-2">Undo</button>
+            <button id="clearAll" class="btn btn-sm btn-primary shadow ml-3 my-2">Clear All</button>  
             <div class="custom-control custom-switch ml-5">
                 <input type="checkbox" class="custom-control-input" id="customSwitch" checked>
                 <label class="custom-control-label" for="customSwitch" id="toggleWord"></label>
             </div>
+            <p class="ml-2 text-muted font-weight-bold">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+                toggle between import and export</p>
         </div>
     </div>
 </div>

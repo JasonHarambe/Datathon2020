@@ -5,7 +5,7 @@
     <nav class="col-3 d-none d-block bg-light sidebar">
         <div class = "sidebar-sticky" style="height:100%; position:fixed; width: 20%; overflow:scroll;">
             <ul class="nav flex-column mb-5 pb-3">
-            <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3>Countries</h3></a>
+            <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3 class="font-weight-bold text-muted">Countries</h3></a>
             @foreach ($countries as $key => $value)
                 <a href="/master/{{ $key }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     {{ $key }}
@@ -20,7 +20,7 @@
     <div class="col-9">
         <div class="row d-flex flex-column py-4">
             <div class="row py-2 d-flex justify-content-between mr-5">
-                <h1>Import / Export</h1>
+                <h1 class="font-weight-bold text-muted col-12">Overall Imports and Exports <br><p style="font-size: 1rem;" class="ml-1">sum of all import and export from all countries</p></h1>
             </div>
             <div class="row py-2">
                 <div class="chart-wrapper shadow p-5">
@@ -48,6 +48,7 @@
                 </div>
             </div>
             <div class="row py-2">
+                <h1 class="text-muted font-weight-bold my-4 col-12">Top Ten Countries by Exports</h1>
                 <div class="chart-wrapper shadow p-5">
                     <canvas id="maxExportChart" width="550" height="350"></canvas>
                 </div>
@@ -65,6 +66,7 @@
                 </div>
             </div>
             <div class="row py-2">
+                <h1 class="text-muted font-weight-bold my-4 col-12">Top Ten Countries by Imports</h1>
                 <div class="chart-wrapper shadow p-5">
                     <canvas id="maxImportChart" width="550" height="350"></canvas>
                 </div>

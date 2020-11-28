@@ -10,7 +10,7 @@
         <div class = "sidebar-sticky" style="height:100%; position:fixed; width: 20%; overflow:scroll;">
             <ul class="nav flex-column pb-3 mb-5">
                 <div class="row d-flex py-3 flex-column mx-3">
-                    <h3 class="text-center">Category</h3>
+                    <h3 class="text-center font-weight-bold">Category</h3>
                     <div class="row d-flex justify-content-center mt-2">
                         <a href="/" class="btn btn-primary btn-sm text-uppercase" role='button'>home</a>
                         <span class="mx-1"></span>
@@ -34,7 +34,7 @@
     <div class="col-9">
         <div class="row d-flex flex-column py-4">
             <div class="row py-2 d-flex justify-content-between mr-5">
-                <h1>Import / Export</h1>
+                <h1 class="text-muted font-weight-bold">Imports Over the Years</h1>
             </div>
             <div class="row py-2">
                 <div class="chart-wrapper shadow p-5">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col mr-5">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Year</th>
                                 <th scope="col">Import (RM)</th>
@@ -60,12 +60,13 @@
                 </div>
             </div>
             <div class="row py-2">
+                <h1 class="text-muted font-weight-bold my-4 col-12">Exports Over the Years</h1>
                 <div class="chart-wrapper shadow p-5">
                     <canvas id="exportChart" width="350" height="350"></canvas>
                 </div>
                 <div class="col mr-5">
                     <table class="table table-bordered">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Year</th>
                                 <th scope="col">Export (RM)</th>

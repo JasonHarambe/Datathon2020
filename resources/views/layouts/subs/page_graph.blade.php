@@ -1,6 +1,6 @@
 <div class="row d-flex flex-column py-4">
     <div class="row py-2 d-flex justify-content-between mr-5">
-        <h1>Summary</h1>
+        <h1 class="text-muted font-weight-bold">Summary <br><p style="font-size:1rem;">number of count in each category</p></h1>
     </div>
     <div class="row py-2">
         <div class="chart-wrapper shadow p-5">
@@ -11,6 +11,7 @@
         @include('layouts.subs.series')
     @endif
     <div class="row py-2">
+        <h1 class="text-muted font-weight-bold my-4 col-12">Total Imports By Category</h1>
         <div class="chart-wrapper shadow p-5">
             <canvas id="importChart" width="350" height="350"></canvas>
         </div>
@@ -34,6 +35,7 @@
         </div>
     </div>
     <div class="row py-2">
+        <h1 class="text-muted font-weight-bold my-4 col-12">Total Exports By Category</h1>
         <div class="chart-wrapper shadow p-5">
             <canvas id="exportChart" width="350" height="350"></canvas>
         </div>

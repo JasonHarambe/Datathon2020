@@ -3,7 +3,7 @@
 @section('content')
 <section class="">
     <div class="row d-flex justify-content-center py-3">
-        <h1 class="display-3">Contact</h1>
+        <h1 class="display-3 text-muted font-weight-bold">Contact</h1>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-md-9">
@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Nurnadia binti Khairul Anuar</h5>
                         <p class="card-text">MSc Data Science student from Universiti Teknologi Malaysia</p>
-                        <a href="#" class="btn btn-primary shadow" target="_">LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/nadiaanuarr/" class="btn btn-primary shadow" target="_">LinkedIn</a>
                     </div>
                 </div>
             </div>
