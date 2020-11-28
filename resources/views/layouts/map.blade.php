@@ -22,7 +22,6 @@
           'packages':['geochart'],
           'mapsApiKey': 'AIzaSyBPDtTrJV4B3e0Tnwx3__4RXOstRB-vnWU'
         });
-        console.log(export_table);
 
         google.charts.setOnLoadCallback(function() {
 

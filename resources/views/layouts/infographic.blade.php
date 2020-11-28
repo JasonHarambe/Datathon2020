@@ -132,12 +132,23 @@
                 <canvas id="exportBubbleChart" width="400" height="250"></canvas>
             </div>
         </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <h2 class="card-body-text">Net Export</h2>
+        </div>
+        <div class="row mt-2">
+            <div class="container" style="width:85%;">
+                <div class="wrapper"><canvas id="netExportChart"></canvas></div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
 
 @section('script')
 <script> 
+
+    var utils = Samples.utils;
+
     $(document).ready(function() {
         var country = 'SINGAPORE';
         renderCharts(country);
@@ -149,12 +160,24 @@
             removeData(window.importByCategory);
             removeData(window.importBubbleChart);
             removeData(window.exportBubbleChart);
+            removeData(window.netExportChart);
 
             renderCharts(country);
 
-        });
+        });	
 
     })
+
+    function colorize(opaque, ctx) {
+        var v = ctx.dataset.data[ctx.dataIndex];
+
+        var c = v < -50 ? '#D60000'
+            : v < 0 ? '#F46300'
+            : v < 50 ? '#0358B6'
+            : '#44DE28';
+
+        return opaque ? c : utils.transparentize(c, 1 - Math.abs(v / 150));
+    }
 
     function removeData(chart) {
         var count = chart.config.data.datasets.length;
@@ -211,6 +234,10 @@
                 var maxYear = response[response.length - 1].year;
                 var countryName = response[0].country;
 
+                var net_exports = series_exports.map(function(item, index) {
+                    return (item - series_imports[index]).toFixed(1);
+                })
+
                 $('#totalExportNo').text(formatNum(total_export))
                 $('#totalImportNo').text(formatNum(total_import))
                 $('#maxImportYear').text(max_import_year)
@@ -245,6 +272,33 @@
                         text: 'Import Exports Over The Years (M)'
                         }
                     }
+                });
+
+                var net_data = {
+                    labels: series_years,
+                    datasets: [{
+                        data: net_exports
+                    }]
+                };
+
+                var net_options = {
+                    plugins: {
+                        legend: false,
+                        tooltip: false,
+                    },
+                    elements: {
+                        rectangle: {
+                            backgroundColor: colorize.bind(null, false),
+                            borderColor: colorize.bind(null, true),
+                            borderWidth: 2
+                        }
+                    }
+                };
+
+                window.netExportChart = new Chart('netExportChart', {
+                    type: 'bar',
+                    data: net_data,
+                    options: net_options
                 });
             }
         })  
@@ -317,8 +371,6 @@
                 var desc = response[0][0].desc;
                 var count = 0;
                 var colorNum = 0;
-
-                console.log(response);
 
                 $.each(response[0], function(index, arg) {
                     if (arg.desc == desc) {
