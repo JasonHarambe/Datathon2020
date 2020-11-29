@@ -58,23 +58,21 @@
             <h1 class="font-weight-bold text-uppercase text-muted" id="countryName"></h1>
         </div>
         <div class="row">
-            <div class="card shadow rounded" style="width:16rem;">
+            <div class="card shadow rounded mr-1" style="width:16rem;">
                 <div class="card-header card-header-text bg-info text-light">
                     Total Exports <br>
                     <span class="card-header-span yearDuration"></span>
                 </div>
                 <div class="card-body card-body-text" id="totalExportNo" style="font-size: 2rem;"></div>
             </div>
-            <span class="mx-2"></span>
-            <div class="card shadow rounded" style="width:16rem;">
+            <div class="card shadow rounded mx-1" style="width:16rem;">
                 <div class="card-header card-header-text bg-primary text-light">
                     Total Imports <br>
                     <span class="card-header-span yearDuration"></span>
                 </div>
                 <div class="card-body card-body-text" id="totalImportNo" style="font-size: 2rem;"></div>
             </div>
-            <span class="mx-2"></span>
-            <div class="card shadow rounded" style="width:16rem;">
+            <div class="card shadow rounded mx-1" style="width:16rem;">
                 <div class="card-header card-header-text bg-success text-light">
                     Max Imports <br>
                     <span class="card-header-span yearDuration"></span>
@@ -82,7 +80,6 @@
                 <div class="card-body card-body-text" id="maxImportYear" style="font-size: 2rem;">                  
                 </div>
             </div>
-            <span class="mx-2"></span>
             <div class="card shadow rounded" style="width:16rem;">
                 <div class="card-header card-header-text bg-secondary text-light">
                     Max Exports <br>
