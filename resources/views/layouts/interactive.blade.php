@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="row">
-    <nav class="col-3 d-none d-block bg-light sidebar">
+    <nav class="col-3 d-none d-block sidebar">
         <div class = "sidebar-sticky" style="height:100%; position:fixed; width: 20%; overflow:scroll;">
             <ul class="nav flex-column mb-5 pb-3">
             <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3 class="font-weight-bold">Countries</h3></a>
