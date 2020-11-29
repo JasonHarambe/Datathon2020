@@ -24,7 +24,7 @@
 
 @section('content')
 <div class="row mb-5">
-    <nav class="col-3 d-none d-block bg-light sidebar">
+    <nav class="col-3 d-none d-block sidebar">
         <div class = "sidebar-sticky" style="height:100%; position:fixed; width: 20%; overflow:scroll;">
             <ul class="nav flex-column mb-5 pb-3">
             @foreach ($countries as $country)
