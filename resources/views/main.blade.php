@@ -21,7 +21,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarfirst">
             <ul class="navbar-nav">
-            <a class="nav-item nav-link" href="/">Home</li>
+            <a class="nav-item nav-link" href="/">Home</a>
             <a class="nav-item nav-link" href="/interactive">Interactive</a>
             <a class="nav-item nav-link" href="/infographic">Infographic</a>
             <a class="nav-item nav-link" href="/map">Map</a>
