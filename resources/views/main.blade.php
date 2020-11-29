@@ -19,15 +19,19 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarfirst">
+            <ul class="navbar-nav">
             <a class="nav-item nav-link" href="/">Home</a>
             <a class="nav-item nav-link" href="/interactive">Interactive</a>
             <a class="nav-item nav-link" href="/infographic">Infographic</a>
             <a class="nav-item nav-link" href="/map">Map</a>
-            <a class="nav-item nav-link" href="/about">About</a>
-            <a class="nav-item nav-link" href="/contact">Contact</a>
-            </div>
+            <ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/about">About</a>
+                <a class="nav-item nav-link" href="/contact">Contact</a>
+            </ul>
         </div>
     </nav>
     @yield('content')
