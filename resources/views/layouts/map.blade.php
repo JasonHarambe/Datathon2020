@@ -47,12 +47,16 @@
   <h1 class="mt-4 text-muted font-weight-bold">Total Exports Map <br><p style="font-size:1rem;" class="text-center">explore Malaysia's exports</p></h1>
 </div>
 <div class="row p-5">
-  <div class="col-12 shadow" id="ExportMap" style="width:85%;"></div>
+  <div class = "col-1"></div>
+  <div class="col-10 shadow" id="ExportMap" style="width:85%;"></div>
+  <div class = "col-1"></div>
 </div>
 <div class="row d-flex justify-content-center">
   <h1 class="mt-4 text-muted font-weight-bold">Total Imports Map <br><p style="font-size:1rem;" class="text-center">explore Malaysia's imports</p></h1>
 </div>
 <div class="row p-5">
-  <div class="col-12 shadow" id="ImportMap"></div>
+  <div class = "col-1"></div>
+  <div class="col-10 shadow" id="ImportMap"></div>
+  <div class = "col-1"></div>
 </div>
 @endsection

@@ -23,8 +23,26 @@
 @endsection
 
 @section('content')
+<div class="row d-block d-sm-none">
+    <nav class="navbar"> 
+            <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarsecond" aria-controls="navbarsecond" aria-expanded="false" aria-label="Toggle navigation">
+                Countries
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsecond">
+                <ul class="navbar-nav">
+                <a class="disabled list-group-item list-group-item-action d-flex justify-content-between align-items-center"><h3 class="font-weight-bold text-muted">Countries</h3></a>
+            
+            @foreach ($countries as $country)
+            <a href="#" data-country="{{ $country->country }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center countryButton">
+                    {{ $country->country }}
+                </a>
+            @endforeach
+                <ul>
+            </div>         
+    </nav>
+</div>
 <div class="row mb-5">
-    <nav class="col-3 d-none d-block sidebar">
+    <nav class="col-3 d-none d-md-block sidebar">
         <div class = "sidebar-sticky" style="height:100%; position:fixed; width: 20%; overflow:scroll;">
             <ul class="nav flex-column mb-5 pb-3">
             @foreach ($countries as $country)
@@ -35,7 +53,7 @@
             </ul>
         </div>
     </nav>
-    <div class="col-9">
+    <div class="col-xs-12 col-md-9 px-5">
         <div class="row pt-3 pb-1">
             <h1 class="font-weight-bold text-uppercase text-muted" id="countryName"></h1>
         </div>
@@ -61,8 +79,7 @@
                     Max Imports <br>
                     <span class="card-header-span yearDuration"></span>
                 </div>
-                <div class="card-body card-body-text" id="maxImportYear" style="font-size: 2rem;">
-                    
+                <div class="card-body card-body-text" id="maxImportYear" style="font-size: 2rem;">                  
                 </div>
             </div>
             <span class="mx-2"></span>
@@ -78,10 +95,10 @@
         </div>
         <div class="row mt-4">
             <h1 class='col-12 text-muted font-weight-bold my-4'>Imports & Exports Over the Years</h1>
-            <div class="col-8 shadow">
+            <div class="col-xs-12 col-md-8 shadow p-5">
                 <canvas id="seriesChart" width="400" height="250"></canvas>
             </div>
-            <div class="col-4 px-5 pt-2 pb-5 d-flex flex-column">
+            <div class="col-xs-12 col-md-4 px-5 pt-2 pb-5 d-flex flex-column">
                 <div class="row">
                     <div class="col-4">
                         <div class="row">
@@ -109,32 +126,32 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3 d-flex justify-content-between mx-2">
-            <div class="col-6">
-                <canvas id="exportByCategory" width="400" height="250"></canvas>
+        <div class="row mt-5 d-flex justify-content-between mx-2">
+            <div class="col-xs-12 col-md-6">
+                <canvas id="exportByCategory" width="60%" height="60%"></canvas>
             </div>
-            <div class="col-6">
-                <canvas id="importByCategory" width="400" height="250"></canvas>
+            <div class="col-xs-12 col-md-6">
+                <canvas id="importByCategory" width="60%" height="60%"></canvas>
             </div>
         </div>
-        <div class="row mt-4 d-flex justify-content-center">
+        <div class="row mt-5 d-none d-md-flex justify-content-center">
             <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Imports Per Year By Category</h1>
         </div>
-        <div class="row mt-2">
+        <div class="row mt-2 d-none d-md-flex ">
             <div class="container" style="width:85%;">
                 <canvas id="importBubbleChart" width="400" height="250"></canvas>
             </div>
         </div>
-        <div class="row mt-4 d-flex justify-content-center">
+        <div class="row mt-4 d-none d-md-flex  justify-content-center">
         <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Exports Per Year By Category</h1>
         </div>
-        <div class="row mt-2">
+        <div class="row mt-2 d-none d-md-flex ">
             <div class="container" style="width:85%;">
                 <canvas id="exportBubbleChart" width="400" height="250"></canvas>
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Balance of Trade (Net Exports)</h1>
+            <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Net Exports</h1>
         </div>
         <div class="row mt-2">
             <div class="container" style="width:85%;">
@@ -172,12 +189,12 @@
     function colorize(opaque, ctx) {
         var v = ctx.dataset.data[ctx.dataIndex];
 
-        var c = v < -50 ? '#ff3939'
-            : v < 0 ? '#ff3939'
-            : v < 50 ? '#25ff25'
-            : '#25ff25';
+        var c = v < -50 ? '#D60000'
+            : v < 0 ? '#F46300'
+            : v < 50 ? '#0358B6'
+            : '#44DE28';
 
-        return opaque ? c : c;
+        return opaque ? c : utils.transparentize(c, 1 - Math.abs(v / 150));
     }
 
     function removeData(chart) {
