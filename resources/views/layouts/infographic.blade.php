@@ -134,7 +134,7 @@
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Net Exports</h1>
+            <h1 class="text-muted font-weight-bold col-12 my-4 text-center">Balance of Trade (Net Exports)</h1>
         </div>
         <div class="row mt-2">
             <div class="container" style="width:85%;">
@@ -172,12 +172,12 @@
     function colorize(opaque, ctx) {
         var v = ctx.dataset.data[ctx.dataIndex];
 
-        var c = v < -50 ? '#D60000'
-            : v < 0 ? '#F46300'
-            : v < 50 ? '#0358B6'
-            : '#44DE28';
+        var c = v < -50 ? '#ff3939'
+            : v < 0 ? '#ff3939'
+            : v < 50 ? '#25ff25'
+            : '#25ff25';
 
-        return opaque ? c : utils.transparentize(c, 1 - Math.abs(v / 150));
+        return opaque ? c : c;
     }
 
     function removeData(chart) {
