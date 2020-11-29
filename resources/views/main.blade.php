@@ -21,16 +21,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarfirst">
             <ul class="navbar-nav">
-            <li class="nav-item nav-link" href="/">Home</li>
-            <li class="nav-item nav-link" href="/interactive">Interactive</li>
-            <li class="nav-item nav-link" href="/infographic">Infographic</li>
-            <li class="nav-item nav-link" href="/map">Map</li>
+            <a class="nav-item nav-link" href="/">Home</li>
+            <a class="nav-item nav-link" href="/interactive">Interactive</a>
+            <a class="nav-item nav-link" href="/infographic">Infographic</a>
+            <a class="nav-item nav-link" href="/map">Map</a>
             <ul>
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item nav-link" href="/about">About</li>
-                <li class="nav-item nav-link" href="/contact">Contact</li>
+                <a class="nav-item nav-link" href="/about">About</a>
+                <a class="nav-item nav-link" href="/contact">Contact</a>
             </ul>
         </div>
     </nav>
