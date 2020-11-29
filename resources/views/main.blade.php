@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <a class="navbar-brand" href="/">Trade Visual</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarfirst" aria-controls="navbarfirst" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarfirst">
@@ -27,7 +27,7 @@
             <a class="nav-item nav-link" href="/map">Map</a>
             <ul>
         </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarfirst">
             <ul class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="/about">About</a>
                 <a class="nav-item nav-link" href="/contact">Contact</a>
