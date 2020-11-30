@@ -33,7 +33,7 @@ https://cloud.stats.gov.my/index.php/s/teDxHCfK6RWQcj3/authenticate (Malaysia Im
 ### Interactive (Comparison between countries)
 ![demo](demo/interactive.gif)
 ### Infographic (Whole summary of a single country)
-![demo](demo/infographic.gif)
+![demo](demo/info.gif)
 ### Interactive map view (Google API)
 ![demo](demo/map.gif)
 ### Individual category viewing
