@@ -20,3 +20,12 @@
 - Run 'php artisan migrate:fresh'
 - Import data into DB 
 - Run 'php artisan serve'
+
+## Objective
+TradeVisual is a web application to visualize the trade dataset provided by Department of Statistic Malaysia. The friendly user interface paired with simplistic visualization allows better insight into the trade dataset for audience from all walks of life. The projet is part of a submission for Datathon 2020 by Department of Statistic Malaysia
+
+## Data Source
+https://cloud.stats.gov.my/index.php/s/teDxHCfK6RWQcj3/authenticate (Malaysia Import Export by partner country, SITC 5D 2013-2019.csv)
+
+## Demo
+![demo]('/demo/home.gif')
