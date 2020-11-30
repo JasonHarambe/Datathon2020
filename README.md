@@ -1,6 +1,6 @@
-## Data Source
-1. Malaysia Import Export by partner country, SITC 5D 2013-2019.csv
-2. 1D -> 5D.csv
+## Dataset Included
+1. Malaysia Import Export by partner country 5D 2013-2019.csv
+2. 1D - 5D.csv
 
 ## Installation Requirement
 - Laravel
@@ -26,6 +26,9 @@ TradeVisual is a web application to visualize the trade dataset provided by Depa
 
 ## Data Source
 https://cloud.stats.gov.my/index.php/s/teDxHCfK6RWQcj3/authenticate (Malaysia Import Export by partner country, SITC 5D 2013-2019.csv)
+
+## Demo web application deployed on Heroku (10% of complete dataset due to free-tier limitation)
+https://trade-33.herokuapp.com
 
 ## Demo
 ### Main Page
