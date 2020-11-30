@@ -37,7 +37,7 @@
         </div>
     </nav>
     <div class="col-xs-12 col-md-9 d-flex flex-column">
-        <h1 class="col-12 text-muted font-weight-bold mt-4 mb-1">Interactive Viewer <br><p style="font-size:1rem;">click on any countries on the left and compare their exports or imports between countries</p></h1>
+        <h1 class="col-12 text-muted font-weight-bold mt-4 mb-1">Interactive Viewer <span style="font-size:1rem;">(use Chrome)</span><br><p style="font-size:1rem;">click on any countries on the left and compare their exports or imports between countries</p></h1>
         <div class="row py-4 chart-container p-5" style="width:100%;">
             <canvas id="canvas"></canvas>
         </div>
