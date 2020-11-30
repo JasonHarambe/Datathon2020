@@ -28,4 +28,4 @@ TradeVisual is a web application to visualize the trade dataset provided by Depa
 https://cloud.stats.gov.my/index.php/s/teDxHCfK6RWQcj3/authenticate (Malaysia Import Export by partner country, SITC 5D 2013-2019.csv)
 
 ## Demo
-![demo]('demo/home.gif')
+![demo](demo/home.gif)
